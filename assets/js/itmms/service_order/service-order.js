@@ -44,6 +44,11 @@ $( function( $ ) {
         }
     });
 
+    $( document ).on( 'change', '#complaint_details', function(){
+        var value = $(this).val();
+        $('#complaint_details_description').parents('.form-group').toggleClass('hide', value != 'Others');
+    });
+
     function add_remove_complaint() {
         var addButton = $('.add-button');
         var fieldHTMLTop = '<tr class="complaint2">' +
@@ -78,12 +83,28 @@ $( function( $ ) {
 
     obj.ajax_add_service_order = function ( $form ){
         var $submit = $form.find( '[type="submit"]' );
+        let data = '';
+
+        // Update the complain details if selected is "Others"
+        if($form.find("#complaint_details").val() == 'Others') {
+            const serializedArray = $form.serializeArray()
+            for (let i = 0; i < serializedArray.length; i++) {
+                if(serializedArray[i].name === 'complaint_details') {
+                    serializedArray[i].value = $form.find("#complaint_details_description").val();
+                    break;
+                }
+            }
+
+            data = jQuery.param(serializedArray);
+        } else {
+            data = $form.serialize()
+        }
 
         $.ajax( {
             url : 'ajax_service_order/add_service_order/' + obj.user_name,
             type : 'post',
             dataType : 'json',
-            data : $form.serialize(),
+            data : data,
             beforeSend : function(){
                 $submit.text( 'Processing...' ).prop( 'disabled', true );
             },
@@ -228,6 +249,11 @@ $( function( $ ) {
                 complaint_details : {
                     required : true
                 },
+                complaint_details_description: {
+                    required : function() {
+                        return $form.find("#complaint_details").val() == 'Others';
+                    }
+                },
                 date_reported : {
                     required : true
                 },
@@ -266,6 +292,9 @@ $( function( $ ) {
                 },
                 complaint_details : {
                     required : "Complaint details is required"
+                },
+                complaint_details_description : {
+                    required : "Complaint description is required"
                 },
                 date_reported : {
                     required : "Date reported is required"

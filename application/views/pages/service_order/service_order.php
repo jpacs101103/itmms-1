@@ -11,7 +11,9 @@
     <form class="horizontal-form" role="form" method="POST">
         <table class="itmms-table">
             <tr>
-                <td><legend class="padding10 itmms-title">Part I - Originator Details</legend></td>
+                <td>
+                    <legend class="padding10 itmms-title">Part I - Originator Details</legend>
+                </td>
             </tr>
             <tr>
                 <td>
@@ -59,7 +61,9 @@
                 </td>
             </tr>
             <tr>
-                <td><legend class="padding10 itmms-title">Part II - Complaint Details</legend></td>
+                <td>
+                    <legend class="padding10 itmms-title">Part II - Complaint Details</legend>
+                </td>
             </tr>
             <tr>
                 <td>
@@ -91,9 +95,9 @@
                         <span class="col-sm-12 itmms-label">Complaint Type:</span>
                         <div class="col-lg-12">
                             <select class="form-control" name="complaint_type" id="complaint_type">
-                                    <option value="">Select Complaint Type</option>
-                                    <option value="hardware">Hardware</option>
-                                    <option value="software">Software</option>
+                                <option value="">Select Complaint Type</option>
+                                <option value="hardware">Hardware</option>
+                                <option value="software">Software</option>
                             </select>
                         </div>
 
@@ -118,7 +122,7 @@
                         <span class="col-lg-12 itmms-label">Complaint:</span>
                         <div class="col-lg-12">
                             <div class="input-group">
-                                <select class="form-control" name="complaint_resource_id[]" id="new_complaint" >
+                                <select class="form-control" name="complaint_resource_id[]" id="new_complaint">
                                     <option value="">Not yet selected</option>
                                 </select>
                                 <span class="input-group-btn">
@@ -136,12 +140,62 @@
                     <div class="form-group">
                         <span class="col-sm-12 itmms-label">Complaint Details:</span>
                         <div class="col-lg-12">
-                            <textarea class="form-control" rows="3" id="complaint_details" name="complaint_details" placeholder="Input Complaint Details"></textarea>
+                            <select class="form-control" id="complaint_details" name="complaint_details">
+                                <optgroup label="Personal Computer:">
+                                    <option>No Power</option>
+                                    <option>No Network</option>
+                                    <option>OS repair</option>
+                                    <option>Glitch Display</option>
+                                    <option>Disk Boot Failure</option>
+                                    <option>Blue Screen</option>
+                                    <option>Flickering Display</option>
+                                    <option>Black Screen Display</option>
+                                    <option>Frequent Restart</option>
+                                    <option>Loading</option>
+                                    <option>Domain Login Failure</option>
+                                    <option>Trust Relationship in Domain</option>
+                                    <option>Can’t Detect Keyboard</option>
+                                    <option>Can’t Detect Mouse</option>
+                                    <option>Beeping</option>
+                                    <option>Suddenly Turn-off</option>
+                                    <option>Hang-up</option>
+                                </optgroup>
+                                <optgroup label="Printer:">
+                                    <option>No Power</option>
+                                    <option>Ink Overflow</option>
+                                    <option>Paper Jam</option>
+                                    <option>No Connection to PC</option>
+                                    <option>Can’t Print</option>
+                                    <option>Blinking</option>
+                                </optgroup>
+                                <optgroup label="TV:">
+                                    <option>No Display</option>
+                                    <option>No Power</option>
+                                    <option>Can’t Duplicate/Extend Display</option>
+                                </optgroup>
+                                <optgroup label="Router/Switch/Access Point:">
+                                    <option>No Power</option>
+                                    <option>Solid Light on LAN Port</option>
+                                    <option>Hang-up</option>
+                                </optgroup>
+                                <optgroup label="UPS:">
+                                    <option>No Power</option>
+                                    <option>Beeping</option>
+                                    <option>Can’t Charge Battery</option>
+                                </optgroup>
+                                <option>Others</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group hide">
+                        <span class="col-sm-12 itmms-label">Complaint Description</span>
+                        <div class="col-lg-12">
+                            <textarea class="form-control" rows="2" id="complaint_details_description" name="complaint_details_description" placeholder="Input Complaint Details"></textarea>
                         </div>
                     </div>
                 </td>
             </tr>
-<!--             <tr>
+            <!--             <tr>
                 <td>
                     <div class="form-group">
                         <span class="col-sm-12 itmms-label">Received By:</span>
@@ -170,11 +224,7 @@
                         <div class="col-lg-8">
                             <div class="inner-addon right-addon">
                                 <i class="fa fa-calendar"></i>
-                                <input type='text'
-                                       class="datepicker-here form-control"
-                                       id="date_reported"
-                                       name="date_reported"
-                                       readonly="readonly" />
+                                <input type='text' class="datepicker-here form-control" id="date_reported" name="date_reported" readonly="readonly" />
                             </div>
                         </div>
                         <div class="col-lg-12 itmms-label-hidden-lg hidden-lg">Time Reported:</div>
@@ -182,11 +232,7 @@
                             <div class="bootstrap-timepicker">
                                 <div class="inner-addon right-addon">
                                     <i class="fa fa-clock-o"></i>
-                                    <input id="time_reported"
-                                           type="text"
-                                           name="time_reported"
-                                           class="form-control"
-                                           />
+                                    <input id="time_reported" type="text" name="time_reported" class="form-control" />
                                 </div>
                             </div>
                         </div>
