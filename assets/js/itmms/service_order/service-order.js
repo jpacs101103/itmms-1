@@ -16,7 +16,7 @@ $( function( $ ) {
     });
 
     obj.user_name = $('#user_name').text();
-    
+
     $('.complaint').hide();
 
     $('#new_complaint').prop('disabled', false).empty().append('<option default value="">Not yet selected</option>');
@@ -260,9 +260,6 @@ $( function( $ ) {
                 time_reported : {
                     required : true
                 },
-                assigned_to : {
-                    required : true
-                }
             },
             messages : {
                 emp_id : {
@@ -302,9 +299,6 @@ $( function( $ ) {
                 time_reported : {
                     required : "Time reported is required"
                 },
-                assigned_to : {
-                    required : "Assigned to is required"
-                }
             },
             highlight: function( element, errorClass, validClass ){
                 $(element).addClass( errorClass ).removeClass( validClass );
