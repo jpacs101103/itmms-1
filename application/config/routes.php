@@ -144,9 +144,9 @@ $route['cluster-report'] = 'report/cluster_report';
 
 /*
 | -------------------------------------------------------------------------
-| ROUTE FOR #PLANS
+| ROUTE FOR #MONITORING
 | -------------------------------------------------------------------------
 */
 
-$route['plans'] = 'plans/plans';
-$route['plans/(:any)'] = 'plans/plans_view_parts/$1';
+$route['monitoring'] = 'monitoring/monitoring';
+$route['monitoring/(:any)'] = 'monitoring/monitoring_view_parts/$1';

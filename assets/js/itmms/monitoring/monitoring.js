@@ -59,7 +59,7 @@ $( function( $ ) {
                                         <span class="dropdown-title text-center">Action Bar</span> \
                                     </li> \
                                     <li> \
-                                        <a href="plans/' + row.computer_id + '">\
+                                        <a href="monitoring/' + row.computer_id + '">\
                                             <i class="fa fa fa-external-link fa-fw fg-cyan"></i> View Parts</a> \
                                     </li> \
                                 </ul> \

@@ -258,7 +258,7 @@
             </div>
         </li>
         <li>
-            <a class="sidebar-item" href="plans" title="Plans">
+            <a class="sidebar-item" href="monitoring" title="Monitoring">
                 Monitoring
                 <span class="fa fa-line-chart fg-gold sub-icon"></span>
             </a>

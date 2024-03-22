@@ -37,7 +37,7 @@ class itmms extends MY_Controller {
              ->add_local_scripts('assets/js/datatables/datatables-bootstrap', TRUE)
              ->add_local_scripts('assets/js/datatables/dataTables.responsive', TRUE)
              ->add_local_scripts('assets/js/itmms/itmms/pending_services');
-             
+
     }
 
    /* public function pending_services() {
@@ -101,7 +101,7 @@ class itmms extends MY_Controller {
         $this->template = 'includes/layout';
     }
 
-    public function plans() {
+    public function monitoring() {
         $this->template = 'includes/layout';
     }
 
