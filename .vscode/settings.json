@@ -4,5 +4,11 @@
   },
   "files.exclude": {
     "**/system": true
+  },
+  "liveServer.settings.useWebExt": true,
+  "liveServer.settings.proxy": {
+    "enable": true, //   i. enabled
+    "baseUri": "/", //  ii. workspace
+    "proxyUri": "http://localhost/itmms" // iii. actual address
   }
 }
