@@ -19,16 +19,18 @@ $( function( $ ) {
 
     $('.complaint').hide();
 
-    $('#new_complaint').prop('disabled', false).empty().append('<option default value="">Not yet selected</option>');
+    $('#new_complaint').prop('disabled', false).empty().append('<option default disabled value="">Not yet selected</option>');
     $( document ).on( 'change', '#complaint_type', function(){
         var value = $(this).val();
         if(value) {
             ajax_get_complaint_by_type('#new_complaint', value).done(function() {
                 $("#new_complaint").prop("selectedIndex", 1);
+
+                updateComplaintDetailsOptions();
             });
         }
         else {
-            $('#new_complaint').prop('disabled', false).empty().append('<option default value="">Not yet selected</option>');
+            $('#new_complaint').prop('disabled', false).empty().append('<option default disabled value="">Not yet selected</option>');
         }
     });
 
@@ -45,11 +47,7 @@ $( function( $ ) {
     });
 
     $( document ).on( 'change', '#new_complaint', function(){
-        var value = $(this).children(':selected').text();
-
-        $('#complaint_details').find('optgroup').hide();
-        $('#complaint_details').find(`optgroup[label="${value}:"]`).show();
-        $('#complaint_details').prop('selectedIndex', 0);
+        updateComplaintDetailsOptions();
     });
 
     $( document ).on( 'change', '#complaint_details', function(){
@@ -322,5 +320,13 @@ $( function( $ ) {
                 obj.ajax_add_service_order( $form );
             }
         });
+    }
+
+    function updateComplaintDetailsOptions() {
+        const value = $('#new_complaint').children(':selected').text();
+
+        $('#complaint_details').find('optgroup').hide();
+        $('#complaint_details').find(`optgroup[label="${value}:"]`).show();
+        $('#complaint_details').prop('selectedIndex', 0);
     }
 });
