@@ -112,7 +112,11 @@ $( function( $ ) {
                                         </li>';
                                     }
                                     else if( obj.status === 'pending') {
-                                            html += '<li class="visible-lg"> \
+                                            html += '\
+                                            <li> \
+                                            <a href="javascript:void(0)" data-method="edit" data-bind="edit_service_order" data-id="' + row.ref_no + '" data-cluster-id = "'+ row.cluster_id +'" data-complaint-type="' + row.complaint_type + '"><i class="fa fa-edit fa-fw fg-yellow"></i> Edit Entry</a> \
+                                            </li> \
+                                            <li class="visible-lg"> \
                                                 <a href="javascript:void(0)" data-method="print" data-bind="print_service_order_form" data-id="' + row.ref_no + '" id="print_service_order_form"><i class="fa fa-print fa-fw"></i> Print Form</a> \
                                             </li> \
                                             <li> \
@@ -202,7 +206,7 @@ $( function( $ ) {
             }
         });
     };
-    
+
     obj.ajax_mark_replaced_service_order_by_id = function( $small_modal ){
         var $submit = $('[type="submit"]');
 
@@ -400,7 +404,7 @@ $( function( $ ) {
                                     $div.find( '[id="if_pulled_out_no"]' ).attr('checked', 'checked');
                                 }
                             break;
-                        
+
                         default :
                             $div.find( '[id=' + index + ']' ).text(value);
                             break;
@@ -436,7 +440,7 @@ $( function( $ ) {
                                 case 'action_taken':
                                     $form.find( '[name=' + index + ']' ).text(value);
                                     break;
-                                    
+
                                 case 'date_finished':
                                     $form.find( '[name=' + index + ']' ).val(value);
                                     break;
@@ -790,7 +794,7 @@ $( function( $ ) {
                                                 $('#property').show();
                                                 $('#return').show();
                                                 $('#returned_to').val('');
-                                                
+
                                             }
                                             else if( $(this).val() === 'need replacement' || $(this).val() === 'under warranty' ){
                                                 $('#return').hide();
