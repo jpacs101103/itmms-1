@@ -121,16 +121,16 @@
                     <div class="form-group">
                         <span class="col-lg-12 itmms-label">Complaint:</span>
                         <div class="col-lg-12">
-                            <div class="input-group">
-                                <select class="form-control" name="complaint_resource_id[]" id="new_complaint">
-                                    <option value="">Not yet selected</option>
-                                </select>
-                                <span class="input-group-btn">
+                            <!-- <div class="input-group"> -->
+                            <select class="form-control" name="complaint_resource_id[]" id="new_complaint">
+                                <option value="">Not yet selected</option>
+                            </select>
+                            <!-- <span class="input-group-btn">
                                     <button class="btn btn-primary add-button itmms-btn" type="button" title="Add field">
                                         +
                                     </button>
-                                </span>
-                            </div>
+                                </span> -->
+                            <!-- </div> -->
                         </div>
                     </div>
                 </td>
@@ -141,6 +141,7 @@
                         <span class="col-sm-12 itmms-label">Complaint Details:</span>
                         <div class="col-lg-12">
                             <select class="form-control" id="complaint_details" name="complaint_details">
+                                <option disabled selected>Select Complaint Details</option>
                                 <optgroup label="Personal Computer:">
                                     <option>No Power</option>
                                     <option>No Network</option>

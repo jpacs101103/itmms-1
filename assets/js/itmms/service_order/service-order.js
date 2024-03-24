@@ -44,6 +44,14 @@ $( function( $ ) {
         }
     });
 
+    $( document ).on( 'change', '#new_complaint', function(){
+        var value = $(this).children(':selected').text();
+
+        $('#complaint_details').find('optgroup').hide();
+        $('#complaint_details').find(`optgroup[label="${value}:"]`).show();
+        $('#complaint_details').prop('selectedIndex', 0);
+    });
+
     $( document ).on( 'change', '#complaint_details', function(){
         var value = $(this).val();
         $('#complaint_details_description').parents('.form-group').toggleClass('hide', value != 'Others');
