@@ -9,6 +9,8 @@
 <span class="hidden" id="user_name"><?php echo $sess_user; ?></span>
 <div class="col-lg-8 col-centered bordered">
     <form class="horizontal-form" role="form" method="POST">
+        <input type="hidden" name="if_pulled_out" value="0" />
+
         <table class="itmms-table">
             <tr>
                 <td>
@@ -68,23 +70,9 @@
             <tr>
                 <td>
                     <div class="form-group">
-                        <span class="col-lg-8 itmms-label">Assigned Name:</span>
-                        <span class="col-lg-4 itmms-label visible-lg">Item Pulled Out?</span>
-                        <div class="col-lg-8">
+                        <span class="col-lg-12 itmms-label">Assigned Name:</span>
+                        <div class="col-lg-12">
                             <select class="form-control" name="computer_name" id="computer_name"></select>
-                        </div>
-                        <div class="col-lg-12 itmms-label-hidden-lg hidden-lg">Item Pulled Out?</div>
-                        <div class="col-lg-4">
-                            <span>
-                                <label class="radio-inline">
-                                    <input type="radio" value="1" name="if_pulled_out" checked> Yes
-                                </label>
-                            </span>
-                            <span>
-                                <label class="radio-inline">
-                                    <input type="radio" value="0" name="if_pulled_out"> No
-                                </label>
-                            </span>
                         </div>
                     </div>
                 </td>
@@ -95,7 +83,7 @@
                         <span class="col-sm-12 itmms-label">Complaint Type:</span>
                         <div class="col-lg-12">
                             <select class="form-control" name="complaint_type" id="complaint_type">
-                                <option value="">Select Complaint Type</option>
+                                <option value="" disabled selected>Select Complaint Type</option>
                                 <option value="hardware">Hardware</option>
                                 <option value="software">Software</option>
                             </select>
@@ -121,16 +109,9 @@
                     <div class="form-group">
                         <span class="col-lg-12 itmms-label">Complaint:</span>
                         <div class="col-lg-12">
-                            <!-- <div class="input-group"> -->
                             <select class="form-control" name="complaint_resource_id[]" id="new_complaint">
-                                <option value="">Not yet selected</option>
+                                <option value="" disabled selected>Not yet selected</option>
                             </select>
-                            <!-- <span class="input-group-btn">
-                                    <button class="btn btn-primary add-button itmms-btn" type="button" title="Add field">
-                                        +
-                                    </button>
-                                </span> -->
-                            <!-- </div> -->
                         </div>
                     </div>
                 </td>

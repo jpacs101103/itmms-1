@@ -50,12 +50,12 @@
                 <div class="col-lg-4">
                     <span>
                         <label class="radio-inline">
-                            <input type="radio" value="1" name="if_pulled_out" checked> Yes
+                            <input type="radio" value="1" name="if_pulled_out" id="yes"> Yes
                         </label>
                     </span>
                     <span>
                         <label class="radio-inline">
-                            <input type="radio" value="0" name="if_pulled_out"> No
+                            <input type="radio" value="0" name="if_pulled_out" id="no"> No
                         </label>
                     </span>
                 </div>
