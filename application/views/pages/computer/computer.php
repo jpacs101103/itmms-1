@@ -64,7 +64,7 @@
                 </tr>
                 <tr>
                     <td>
-                        
+
                             <div class="computer-parts-container">
                                 <div class="computer-parts-item">
                                     <div class="col-lg-6">
@@ -84,7 +84,7 @@
                                             <option value="Video Card">UPS</option>
                                         </select>
                                     </div>
-                                    
+
                                     <div class="col-lg-6">
                                         <span>Value: </span>
                                         <select class="form-control" name="parts_depreciation_value[]" id="parts_depreciation_value">
@@ -179,7 +179,7 @@
                             <div class="col-sm-12">
                                 <div class="inner-addon right-addon">
                                     <i class="fa fa-warning"></i>
-                                    <input type="text" class="form-control" name="computer_name" id="computer_name" placeholder="Computer Name">
+                                    <input type="text" class="form-control" name="computer_name" id="computer_name" placeholder="Assigned Name">
                                 </div>
                             </div>
                         </div>

@@ -151,7 +151,7 @@
                                                         <thead>
                                                             <tr>
                                                                 <th class="text-center" data-priority="1">Ref No</th>
-                                                                <th data-priority="3">Computer Name</th>
+                                                                <th data-priority="3">Assigned Name</th>
                                                                 <th>Activities</th>
                                                                 <th>Date / Time</th>
                                                                 <!-- <th class="text-center" data-priority="2"><i class="fa fa-wrench fa-fw"></i></th> -->
@@ -171,7 +171,7 @@
             </div>
         </div>
     </div>
-<?php endif; ?>   
+<?php endif; ?>
 <?php if($sess_access_rights === 'ultimate_control'): ?>
     <!-- Access Rights tab -->
     <div class="tab-pane" id="access-rights-tab">

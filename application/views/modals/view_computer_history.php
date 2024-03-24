@@ -16,7 +16,7 @@
                             <span><small class="text-muted text-bold" id="computer_type"></small></span>
                         </div>
                         <div>
-                            Computer Name: <span id="computer_name"class="text-bold"></span>
+                            Assigned Name: <span id="computer_name"class="text-bold"></span>
                         </div>
                         <div>
                             Assigned To: <span id="assigned_to"class="text-bold"></span>

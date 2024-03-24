@@ -25,7 +25,7 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">Ref No.</th>
-                                        <th>Computer Name</th>
+                                        <th>Assigned Name</th>
                                         <th>Complaint</th>
                                         <th>Complaint Details</th>
                                         <th>Date Reported</th>

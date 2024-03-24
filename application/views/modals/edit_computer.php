@@ -9,9 +9,9 @@
                 Computer Details
             </div>
             <div class="form-group">
-                <div class="col-sm-12 itmms-label">Computer Name: <i class="fa fa-lock fg-gray pull-right padding-right5"></i></div>
+                <div class="col-sm-12 itmms-label">Assigned Name: <i class="fa fa-lock fg-gray pull-right padding-right5"></i></div>
                 <div class="col-lg-12">
-                    <input type="text" class="form-control" name="computer_name" id="computer_name" placeholder="Input Computer Name" readonly>
+                    <input type="text" class="form-control" name="computer_name" id="computer_name" placeholder="Input Assigned Name" readonly>
                 </div>
             </div>
             <div class="form-group">
@@ -28,7 +28,7 @@
             <div class="form-group">
                 <div class="col-sm-12 itmms-label">Brand/Clone Name:</div>
                 <div class="col-lg-12">
-                    <textarea class="form-control" rows="5" id="brand_clone_name" name="brand_clone_name" placeholder="Input Brand/Clone Name"></textarea>   
+                    <textarea class="form-control" rows="5" id="brand_clone_name" name="brand_clone_name" placeholder="Input Brand/Clone Name"></textarea>
             </div>
             </div>
             <div class="subtext">

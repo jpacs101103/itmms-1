@@ -32,7 +32,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center" data-priority="1">Ref No</th>
-                                    <th data-priority="3">Computer Name</th>
+                                    <th data-priority="3">Assigned Name</th>
                                     <th>Complaint Type</th>
                                     <th>Complaint</th>
                                     <th>Complaint Details</th>
@@ -108,7 +108,7 @@
             </tr>
             <tr>
                 <td colspan="3"><span>Assigned to:</span>&nbsp;<span class="text-bold" id="view_assigned_to"></span></td>
-                <td class="text-left"><span>Computer Name:</span>&nbsp;<span class="underline-bottom" id="computer_name" style="width: 180px; display: inline-block"></span></td>
+                <td class="text-left"><span>Assigned Name:</span>&nbsp;<span class="underline-bottom" id="computer_name" style="width: 180px; display: inline-block"></span></td>
             </tr>
             <tr>
                 <td class="underline-top" colspan="4"></td>
@@ -226,7 +226,7 @@
             </tr>
             <tr> -->
                 <td colspan="3"><span>Assigned to:</span>&nbsp;<span class="text-bold" id="view_assigned_to"></span></td>
-                <td class="text-left"><span>Computer Name:</span>&nbsp;<span class="underline-bottom" id="computer_name" style="width: 180px; display: inline-block"></span></td>
+                <td class="text-left"><span>Assigned Name:</span>&nbsp;<span class="underline-bottom" id="computer_name" style="width: 180px; display: inline-block"></span></td>
             </tr>
             <tr>
                 <td class="underline-top" colspan="4"></td>
@@ -287,5 +287,5 @@
                 <td class="underline-top" colspan="4"></td>
             </tr>
         </table>
-    
+
 </div>

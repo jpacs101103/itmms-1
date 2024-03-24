@@ -41,7 +41,7 @@
                 Part II - Complaint Details
             </div>
             <div class="form-group">
-                <span class="col-lg-8 itmms-label">Computer Name:</span>
+                <span class="col-lg-8 itmms-label">Assigned Name:</span>
                 <span class="col-lg-4 itmms-label visible-lg">Item Pulled Out?</span>
                 <div class="col-lg-8">
                     <select class="form-control" name="computer_name" id="computer_name"></select>

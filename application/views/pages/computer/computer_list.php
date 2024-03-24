@@ -15,7 +15,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center" data-priority="1">ID</th>
-                                <th data-priority="3">Computer Name</th>
+                                <th data-priority="3">Assigned Name</th>
                                 <th>Computer Type</th>
                                 <th>Brand/Clone Name</th>
                                 <th>Designation</th>

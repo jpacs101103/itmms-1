@@ -503,7 +503,7 @@
                     number : "Number only please"
                 },
                 computer_name : {
-                    required : "Computer Name is required"
+                    required : "Assigned Name is required"
                 },
                 complaint_type : {
                     required : "Complaint type is required"

@@ -103,7 +103,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center" data-priority="1">Ref No</th>
-                                <th data-priority="3">Computer Name</th>
+                                <th data-priority="3">Assigned Name</th>
                                 <th>Complaint Type</th>
                                 <th>Complaint</th>
                                 <th>Complaint Details</th>

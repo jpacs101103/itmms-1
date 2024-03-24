@@ -62,7 +62,7 @@
                                 <th data-priority="1">Ref No</th>
                                 <th data-priority="3">Name</th>
                                 <th data-priority="4">Originator Cluster</th>
-                                <th data-priority="2">Computer Name</th>
+                                <th data-priority="2">Assigned Name</th>
                                 <th data-priority="5">Computer Brand/Clone Name</th>
                                 <th data-priority="6">Complaint Type</th>
                                 <th data-priority="7">Complaint Details</th>

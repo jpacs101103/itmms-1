@@ -13,7 +13,7 @@
                             Reference Number: <span id="ref_no"class="text-bold"></span>
                         </div>
                         <div>
-                            Computer Name: <span id="computer_name"class="text-bold"></span>
+                            Assigned Name: <span id="computer_name"class="text-bold"></span>
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-8">
