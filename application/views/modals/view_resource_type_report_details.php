@@ -9,7 +9,7 @@
                 <span><b><small>Type: </small></b></span>
                 <span class="btn-group" role="group">
                     <button type="button" class="btn btn-default active" data-role="dept_and_office">All</button>
-                    <button type="button" class="btn btn-default" data-role="dept_and_office">E-Room</button>
+                    <button type="button" class="btn btn-default" data-role="dept_and_office">Lecture</button>
                     <button type="button" class="btn btn-default" data-role="dept_and_office">Laboratory</button>
                     <button type="button" class="btn btn-default" data-role="dept_and_office">Department</button>
                     <button type="button" class="btn btn-default" data-role="dept_and_office">Office</button>

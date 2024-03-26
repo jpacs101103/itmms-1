@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <h1 class="itmms-page-header">
             <i class="fa fa-sitemap fa-fw"></i>
-            <?php echo  preg_replace('/[^a-zA-Z0-9]/', ' ', ucwords($method)) ?>
+            Locations
         </h1>
     </div>
 </div>
@@ -27,6 +27,7 @@
                                 <th data-priority="3">Cluster Code</th>
                                 <th>Cluster Name</th>
                                 <th>Cluster Type</th>
+                                <th># of Rooms</th>
                                 <th class="text-center" data-priority="2"><i class="fa fa-wrench fa-fw"></i></th>
                             </tr>
                         </thead>

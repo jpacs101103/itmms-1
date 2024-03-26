@@ -52,8 +52,8 @@ class Cluster extends MY_Controller {
     }
 
     public function department_ws($cluster_code) {
-
         $this->data['query'] = $this->cluster->show_department_ws(strtoupper($cluster_code));
+        $this->data['cluster'] = $this->cluster->get_cluster_details_by_cluster_code(strtoupper($cluster_code));
         $this->template = 'includes/layout';
 
         $this
@@ -65,12 +65,13 @@ class Cluster extends MY_Controller {
              ->add_local_scripts('assets/js/datatables/datatables-bootstrap', TRUE)
              ->add_local_scripts('assets/js/datatables/dataTables.responsive', TRUE)
 
-             ->add_local_scripts('assets/js/itmms/computer/computer_history');
+             ->add_local_scripts('assets/js/itmms/computer/computer_history')
+             ->add_local_scripts('assets/js/itmms/classroom/classroom_list');
     }
 
     public function office_ws($cluster_code) {
-
         $this->data['query'] = $this->cluster->show_office_ws(strtoupper($cluster_code));
+        $this->data['cluster'] = $this->cluster->get_cluster_details_by_cluster_code(strtoupper($cluster_code));
         $this->template = 'includes/layout';
 
         $this
@@ -82,6 +83,7 @@ class Cluster extends MY_Controller {
              ->add_local_scripts('assets/js/datatables/datatables-bootstrap', TRUE)
              ->add_local_scripts('assets/js/datatables/dataTables.responsive', TRUE)
 
-             ->add_local_scripts('assets/js/itmms/computer/computer_history');
+             ->add_local_scripts('assets/js/itmms/computer/computer_history')
+             ->add_local_scripts('assets/js/itmms/classroom/classroom_list');
     }
 }

@@ -40,6 +40,7 @@ $( function( $ ) {
             'url': 'ajax_classroom/get_classroom_details_for_table',
             'data': function ( d ) {
                 d.type = $('.active[data-role="type"]').text().toLowerCase();
+                d.cluster_id = $('[name="cluster_id"]').val();
             }
         },
         'deferRender': true,
@@ -64,6 +65,9 @@ $( function( $ ) {
                                 <ul class="dropdown-menu pull-right" role="menu"  style="padding: 0 0 7px 0"> \
                                     <li> \
                                         <span class="dropdown-title text-center">Action Bar</span> \
+                                    </li> \
+                                    <li> \
+                                        <a href="'+ row.type + '/' + row.room_no + '"><i class="fa fa-external-link fa-fw fg-cyan"></i> View Room</a> \
                                     </li> \
                                     <li> \
                                         <a href="javascript:void(0)" data-method="edit" data-bind="edit_classroom" data-id="' + row.room_id + '"><i class="fa fa-edit fa-fw fg-yellow"></i> Edit Entry</a> \

@@ -17,7 +17,7 @@ $( function( $ ) {
         if( value ) {
             switch(value){
                 case 'laboratory':
-                case 'e-room':
+                case 'lecture':
                     ajax_get_classroom_designation_for_computer(value);
                     break;
                 case 'department':
@@ -33,7 +33,7 @@ $( function( $ ) {
 
     obj.ajax_add_computer = function ( $form ){
         var $submit = $form.find( '[type="submit"]' );
-        
+
         $.ajax( {
             url : 'ajax_computer/add_computer',
             type : 'post',
@@ -52,7 +52,7 @@ $( function( $ ) {
                         toastr.success( "Added!", "itmms | Computer" );
                     else
                         toastr.success( "Added! <a role='button' class='btn btn-sm-toastr' href='manage/computers'><i class='fa fa-external-link'></i> View List</a>", "itmms | Computer" );
-                    
+
                 }
                 else{
                     toastr.error( "Failed to add", "itmms | Computer" );
@@ -121,7 +121,7 @@ $( function( $ ) {
     $('.btn-add-part').click(function(){
         var computerParts = $('.computer-parts-container');
 
-        var computerPartItem = 
+        var computerPartItem =
         '<div class="computer-parts-item">' +
         '    <div class="col-lg-6">' +
         '        <span>Parts: </span>' +

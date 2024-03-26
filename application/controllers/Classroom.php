@@ -51,8 +51,9 @@ class Classroom extends MY_Controller {
         }
     }
 
-    public function eroom_ws() {
-        $this->data['query'] = $this->classroom->show_lec_ws();
+    public function eroom_ws($classroom) {
+        $classroom = urldecode($classroom);
+        $this->data['query'] = $this->classroom->show_rooms(strtolower($classroom), 'lecture');
         $this->template = 'includes/layout';
 
         $this
@@ -68,7 +69,8 @@ class Classroom extends MY_Controller {
     }
 
     public function laboratory_ws($classroom) {
-        $this->data['query'] = $this->classroom->show_lab_ws(strtolower($classroom));
+        $classroom = urldecode($classroom);
+        $this->data['query'] = $this->classroom->show_rooms(strtolower($classroom), 'laboratory');
         $this->template = 'includes/layout';
 
         $this

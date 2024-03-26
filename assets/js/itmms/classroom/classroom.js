@@ -3,6 +3,7 @@ $( function( $ ) {
 
     init();
     validate();
+    ajax_get_clusters();
 
     obj.ajax_add_classroom = function ( $form ){
         var $submit = $form.find( '[type="submit"]' );
@@ -19,10 +20,7 @@ $( function( $ ) {
                 if(result.status){
                     $( '.classroom-wrapper' ).load( 'dashboard .classroom-wrapper > li' );
                     $( '.classroom-wrapper-sidebar' ).load( 'dashboard .classroom-wrapper-sidebar > li' );
-                    if(result.access_rights == 'add')
-                        toastr.success( "Added!", "itmms | Room" );
-                    else
-                        toastr.success( "Added! <a role='button' class='btn btn-sm-toastr' href='manage/classrooms'><i class='fa fa-external-link'></i> View List</a>", "itmms | Room" );
+                    toastr.success( "Added!", "itmms | Room" );
                 }
                 else{
                     toastr.error( "Failed to add", "itmms | Room" );
@@ -42,6 +40,9 @@ $( function( $ ) {
 
         $form.validate({
             rules: {
+                cluster_id : {
+                    required : true
+                },
                 room_no : {
                     required : true,
                     remote : {
@@ -54,6 +55,9 @@ $( function( $ ) {
                 }
             },
             messages : {
+                cluster_id : {
+                    required : "Department / Office is required"
+                },
                 room_no : {
                     required : "Room No. is required",
                     remote : "Room No. is not available"

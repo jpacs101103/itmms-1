@@ -735,20 +735,43 @@ $( function( $ ) {
                 $computer.append( $loader );
             },
             success: function( result ){
-                if( result instanceof Array ) {
+                $computer.empty();
+
+                if( result instanceof Array && result.length > 0 ) {
                     var $select = $('<option />');
                         $select.attr('value', 'NA').text('Not Applicable');
 
-                    $computer.empty();
                     $computer.append($select);
 
+                    var groups = {
+                        'department': $('<optgroup label="Department"></optgroup>'),
+                        'office': $('<optgroup label="Office"></optgroup>'),
+                        'laboratory': $('<optgroup label="Laboratory"></optgroup>'),
+                        'lecture': $('<optgroup label="Lecture"></optgroup>'),
+                    };
                     $.each(result, function(index, value){
-                        var $option = $( '<option />' );
+                        var computer = result[index];
 
+                        var $option = $( '<option />' );
                         $option.attr( 'value', result[ index ].computer_name ).text( result[index].computer_name );
-                        $computer.append( $option );
+
+                        groups[computer.designation_type].append($option);
                     });
 
+                    Object.keys(groups).forEach(groupKey => {
+                        if(groups[groupKey].children().length) {
+                            $computer.append(groups[groupKey]);
+                        }
+                    });
+                } else {
+                    var $select = $('<option />');
+                        $select.attr({
+                            'value': 'NA',
+                            'disabled': true,
+                            'selected': true
+                        }).text('No computers assigned to selected designation');
+
+                    $computer.append($select);
                 }
             },
             error : function( xhr, status ){

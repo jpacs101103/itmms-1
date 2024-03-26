@@ -104,9 +104,8 @@ $route['manage/service-orders'] = 'service_order/service_order_list';
 */
 
 $route['new/classroom'] = 'classroom/classroom';
-$route['manage/classrooms'] = 'classroom/classroom_list';
 $route['laboratory/(:any)'] = 'classroom/laboratory_ws/$1/$2';
-$route['e-room'] = 'classroom/eroom_ws';
+$route['lecture/(:any)'] = 'classroom/eroom_ws/$1/$2';
 
 /*
 | -------------------------------------------------------------------------

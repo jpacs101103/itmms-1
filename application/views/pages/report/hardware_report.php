@@ -51,7 +51,7 @@
                             <tr>
                                 <th data-priority="0">Resource ID</th>
                                 <th data-priority="1">Resource Name</th>
-                                <th data-priority="2">E-Room</th>
+                                <th data-priority="2">Lecture</th>
                                 <th data-priority="3">Laboratory</th>
                                 <th data-priority="4">Department</th>
                                 <th data-priority="5">Office</th>

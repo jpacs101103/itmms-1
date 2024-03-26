@@ -9,29 +9,16 @@ class Classroom_Model extends MY_Model{
 
     ######################### CRUD #########################
 
-    public function show_lec_ws() {
+    public function show_rooms($room_no, $type) {
         $query = $this->db->select( '*' )
-                          ->from( 'computers c' )
-                          ->join( 'computer_designation cd', 'cd.computer_id = c.computer_id' )
-                          ->join( 'rooms r', 'r.room_no = cd.designation' )
-                          ->join( 'classrooms cl', 'cl.room_id = r.room_id' )
-                          ->where( 'cl.type', 'e-room' )
-                          ->order_by( 'c.computer_name asc' )
-                          ->get();
-
-        return $query->result();
-    }
-
-    public function show_lab_ws($room_no) {
-        $query = $this->db->select( '*' )
-                            ->from( 'computers c' )
-                            ->join( 'computer_designation cd', 'cd.computer_id = c.computer_id' )
-                            ->join( 'rooms r', 'r.room_no = cd.designation' )
-                            ->join( 'classrooms cl', 'cl.room_id = r.room_id' )
-                            ->where( 'cl.type', 'laboratory' )
-                            ->where( 'r.room_no', $room_no )
-                            ->order_by( 'c.computer_name asc' )
-                            ->get();
+                ->from( 'computers c' )
+                ->join( 'computer_designation cd', 'cd.computer_id = c.computer_id' )
+                ->join( 'rooms r', 'r.room_no = cd.designation' )
+                ->join( 'classrooms cl', 'cl.room_id = r.room_id' )
+                ->where( 'cl.type', $type )
+                ->where( 'r.room_no', $room_no )
+                ->order_by( 'c.computer_name asc' )
+                ->get();
 
         return $query->result();
     }
@@ -52,6 +39,7 @@ class Classroom_Model extends MY_Model{
         $room_id = $this->db->insert_id();
 
         $classrooms = array(
+                'cluster_id'    =>  $cluster_id,
                 'room_id'       =>  $room_id,
                 'type'          =>  $classroom_type,
             );
@@ -152,9 +140,10 @@ class Classroom_Model extends MY_Model{
     }
 
     public function get_classroom_details_by_type($type) {
-        $query = $this->db->select('r.room_id, r.room_no, cl.type')
+        $query = $this->db->select('r.room_id, r.room_no, cl.type, clr.cluster_code')
                           ->from('rooms r')
                           ->join('classrooms cl', 'cl.room_id = r.room_id', 'inner')
+                          ->join('clusters clr', 'cl.cluster_id = clr.cluster_id', 'left')
                           ->where('cl.type', $type)
                           ->order_by('room_no asc')
                           ->get();
@@ -225,6 +214,10 @@ class Classroom_Model extends MY_Model{
             $sql .= 'AND cl.type = ? ';
         }
 
+        if($cluster_id){
+            $sql .= 'AND cl.cluster_id = ? ';
+        }
+
         if(!empty($search['value'])){
             $sql .= 'AND (r.room_id = ? ';
             $sql .= 'OR r.room_no LIKE ? ';
@@ -233,6 +226,10 @@ class Classroom_Model extends MY_Model{
 
         if($type !== 'all'){
             $params[] = $type;
+        }
+
+        if($cluster_id){
+            $params[] = $cluster_id;
         }
 
         if(isset($order)){
@@ -256,10 +253,10 @@ class Classroom_Model extends MY_Model{
     }
 
     ################################### Cluster Reports #####################################
-    
+
      public function get_classroom_report_records_total() {
         $sql  = 'SELECT r.room_no, cl.type, ';
-        $sql .= 'SUM(CASE WHEN cr.type = "hardware" THEN 1 ELSE 0 END) as no_of_reports_hardware, '; 
+        $sql .= 'SUM(CASE WHEN cr.type = "hardware" THEN 1 ELSE 0 END) as no_of_reports_hardware, ';
         $sql .= 'SUM(CASE WHEN cr.type = "software" THEN 1 ELSE 0 END) as no_of_reports_software, ';
         $sql .= 'COUNT(cr.type) as total_reports_per_cluster ';
         $sql .= 'FROM classrooms cl ';
@@ -294,7 +291,7 @@ class Classroom_Model extends MY_Model{
         $params = [];
 
         $sql  = 'SELECT r.room_no, cl.type, ';
-        $sql .= 'SUM(CASE WHEN cr.type = "hardware" THEN 1 ELSE 0 END) as no_of_reports_hardware, '; 
+        $sql .= 'SUM(CASE WHEN cr.type = "hardware" THEN 1 ELSE 0 END) as no_of_reports_hardware, ';
         $sql .= 'SUM(CASE WHEN cr.type = "software" THEN 1 ELSE 0 END) as no_of_reports_software, ';
         $sql .= 'COUNT(cr.type) as total_reports_per_cluster ';
         $sql .= 'FROM classrooms cl ';
@@ -320,7 +317,7 @@ class Classroom_Model extends MY_Model{
         $params[] = 'close';
         $params[] = date('Y-m-d', strtotime($date_from));
         $params[] = date('Y-m-d', strtotime($date_to));
-        
+
         if($type !== 'all'){
             $params[] = $type;
         }
@@ -361,7 +358,7 @@ class Classroom_Model extends MY_Model{
         $params[] = 'close';
         $params[] = date('Y-m-d', strtotime($date_from));
         $params[] = date('Y-m-d', strtotime($date_to));
-        
+
         if($type !== 'all'){
             $params[] = $type;
         }
@@ -381,7 +378,7 @@ class Classroom_Model extends MY_Model{
         $params = [];
 
         $sql  = 'SELECT r.room_no, cl.type, ';
-        $sql .= 'SUM(CASE WHEN cr.type = "hardware" THEN 1 ELSE 0 END) as no_of_reports_hardware, '; 
+        $sql .= 'SUM(CASE WHEN cr.type = "hardware" THEN 1 ELSE 0 END) as no_of_reports_hardware, ';
         $sql .= 'SUM(CASE WHEN cr.type = "software" THEN 1 ELSE 0 END) as no_of_reports_software, ';
         $sql .= 'COUNT(cr.type) as total_reports_per_cluster ';
         $sql .= 'FROM classrooms cl ';
@@ -407,7 +404,7 @@ class Classroom_Model extends MY_Model{
         $params[] = 'close';
         $params[] = date('Y-m-d', strtotime($date_from));
         $params[] = date('Y-m-d', strtotime($date_to));
-        
+
         if($type !== 'all'){
             $params[] = $type;
         }
@@ -447,7 +444,7 @@ class Classroom_Model extends MY_Model{
         $params[] = 'close';
         $params[] = date('Y-m-d', strtotime($date_from));
         $params[] = date('Y-m-d', strtotime($date_to));
-        
+
         if($type !== 'all'){
             $params[] = $type;
         }

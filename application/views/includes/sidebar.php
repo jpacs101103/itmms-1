@@ -59,66 +59,22 @@
         </li>
         <?php endif; ?>
     <ul class="sidebar-nav content-sidebar" id="sidebar">
-        <li id="classrooms">
-            <a class="sidebar-item"
-                href="javascript:void(0)"
-                title="<b>Rooms</b>"
-                rel="popover"
-                data-popover-content="#classroom-pop">Classroom
-                <span class="sub-icon fa fa-university fg-gold"></span>
-            </a>
-            <div id="classroom-pop" class="hidden">
-                <ul>
-                    <?php if( $sess_access_rights === 'full_control' || $sess_access_rights === 'ultimate_control' ): ?>
-                    <li>
-                        <a href="new/classroom"><i class="fa fa-plus-square fa-fw"></i> New</b></a>
-                    </li>
-                    <li>
-                        <a href="manage/classrooms"><i class="fa fa-external-link fa-fw"></i> Manage</b></a>
-                    </li>
-                    <?php endif; ?>
-                    <li class="disabled-title">WORKSTATIONS</li>
-                    <li>
-                        <a href="e-room"><i class="fa fa-book fa-fw"></i>Lecture Room</a>
-                    </li>
-                    <li class="popover-submenu">
-                        <a href="javascript:void(0)" class="link-disabled"><i class="fa fa-flask fa-fw"></i> Laboratories</a>
-                        <ul class="dropdown-menu scrollable-menu classroom-wrapper-sidebar" style="min-width: 100px; height: 120px;" id="custom-ssb-scollbar">
-                            <?php
-                                if($this->classroom->get_classroom_details_by_type('laboratory')) :
-                                    foreach ($this->classroom->get_classroom_details_by_type('laboratory') as $row) :
-                            ?>
-                                    <li><a href="laboratory/<?php echo strtolower($row->room_no); ?>">
-                                        <i class="fa fa-laptop fa-fw"></i>
-                                        <?php echo $row->room_no; ?>
-                                    </a></li>
-                            <?php
-                                    endforeach;
-                                else :
-                            ?>
-                                <li class="disabled-li"><i class="fa fa-ban"></i>&nbsp;Empty</li>
-
-                            <?php
-                                endif
-                            ?>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </li>
         <li id="clusters">
            <a class="sidebar-item"
                 href="javascript:void(0)"
-                title="<b>Offices</b>"
+                title="<b>Locations</b>"
                 rel="popover"
-                data-popover-content="#cluster-pop">Cluster
+                data-popover-content="#cluster-pop">Locations
                 <span class="fa fa-location-arrow fg-gold sub-icon"></span>
             </a>
             <div id="cluster-pop" class="hidden">
                 <ul>
                     <?php if( $sess_access_rights === 'full_control' || $sess_access_rights === 'ultimate_control' ): ?>
                     <li>
-                        <a href="new/cluster"><i class="fa fa-plus-square fa-fw"></i> New</a>
+                        <a href="new/cluster"><i class="fa fa-plus-square fa-fw"></i> New Dept/Office</a>
+                    </li>
+                    <li>
+                        <a href="new/classroom"><i class="fa fa-plus-square fa-fw"></i> New Room</a>
                     </li>
                     <li>
                         <a href="manage/clusters"><i class="fa fa-external-link fa-fw"></i> Manage</a>

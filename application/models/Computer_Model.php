@@ -36,7 +36,7 @@ class Computer_Model extends MY_Model{
         }else{
             $name = strtoupper( $designation /*. 'WS'*/ . str_pad((string)($workstation_no), 2, '0', STR_PAD_LEFT) );
         }
-        
+
 
         $computers = array(
 
@@ -206,17 +206,34 @@ class Computer_Model extends MY_Model{
     }
 
     public function get_computer_details_for_service_order($cluster_id) {
-        $query = $this->db->select('c.computer_id, c.computer_name')
-                          ->from('computers c')
-                          ->join('computer_designation cd', 'c.computer_id = cd.computer_id', 'inner')
-                          ->join('clusters clr', 'cd.designation = clr.cluster_code', 'left')
-                          ->where('clr.cluster_id', $cluster_id)
-                          ->or_where('cd.designation_type', 'lecture')
-                          ->or_where('cd.designation_type', 'e-room')
-                          ->or_where('cd.designation_type', 'laboratory')
-                          // ->order_by('computer_name')
-                          ->get();
-        return ($query->num_rows()) ? $query->result() : FALSE;
+        $results = [];
+
+        $query_rooms = $this->db->select('c.computer_id, c.computer_name, cd.designation_type')
+                        ->from('computers c')
+                        ->join('computer_designation cd', 'c.computer_id = cd.computer_id', 'inner')
+                        ->join('rooms r', 'r.room_no = cd.designation', 'left')
+                        ->join('classrooms cl', 'cl.room_id = r.room_id', 'left')
+                        ->where('cl.cluster_id', $cluster_id)
+                        ->order_by('computer_name')
+                        ->get();
+
+        $query_clusters = $this->db->select('c.computer_id, c.computer_name, cd.designation_type')
+                        ->from('computers c')
+                        ->join('computer_designation cd', 'c.computer_id = cd.computer_id', 'inner')
+                        ->join('clusters clr', 'cd.designation = clr.cluster_code', 'left')
+                        ->where('clr.cluster_id', $cluster_id)
+                        ->order_by('computer_name')
+                        ->get();
+
+        if($query_rooms->num_rows()) {
+            $results = array_merge($results, $query_rooms->result());
+        }
+
+        if($query_clusters->num_rows()) {
+            $results = array_merge($results, $query_clusters->result());
+        }
+
+        return count($results) ? $results : FALSE;
     }
 
     public function get_computer_records_total() {

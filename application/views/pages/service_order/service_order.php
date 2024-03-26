@@ -32,12 +32,30 @@
                     </div>
                 </td>
             </tr>
+            <!-- <tr>
+                <td>
+                    <div class="form-group">
+                        <div class="col-sm-12 itmms-label">Designation Type: </div>
+                        <div class="col-lg-12">
+                            <select class="form-control" name="designation_type" id="designation_type">
+                                <option value="" disabled selected>Select Designation Type</option>
+                                <option value="lecture">Lecture</option>
+                                <option value="laboratory">Laboratory</option>
+                                <option value="department">Department</option>
+                                <option value="office">Office</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+            </tr> -->
             <tr>
                 <td>
                     <div class="form-group">
-                        <span class="col-sm-12 itmms-label">Department / Office</span>
+                        <span class="col-sm-12 itmms-label">Designation</span>
                         <div class="col-lg-12">
-                            <select class="form-control" name="cluster_id" id="cluster_id"></select>
+                            <select class="form-control" name="cluster_id" id="cluster_id">
+                                <option value="" disabled selected>Not yet selected</option>
+                            </select>
                         </div>
                     </div>
                 </td>

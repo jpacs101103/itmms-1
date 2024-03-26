@@ -72,7 +72,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="form-group">
                 <div class="col-sm-12 itmms-label">Completed By:</div>
                 <div class="col-sm-12">
@@ -85,7 +85,7 @@
                      <select class="form-control" name="unit_status" id="unit_status">
                         <option value="">Select Unit Status</option>
                         <option value="repaired">Repaired</option>
-                        <option value="under warranty">Under Warranty</option>
+                        <option value="under warranty">Replacement</option>
                     </select>
                 </div>
             </div>

@@ -2,7 +2,7 @@
     <div class="col-lg-8 col-centered">
        <h1 class="itmms-page-header">
             <i class="fa fa-location-arrow fa-fw"></i>
-                <?php echo  preg_replace('/[^a-zA-Z0-9]/', ' ', ucwords($controller)) ?>
+                Location
         </h1>
     </div>
 </div>

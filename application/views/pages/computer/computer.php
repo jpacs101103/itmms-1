@@ -124,7 +124,7 @@
                             <div class="col-lg-5">
                                 <select class="form-control" name="designation_type" id="designation_type">
                                     <option value="">Select Designation Type</option>
-                                    <option value="e-room">E - Room</option>
+                                    <option value="lecture">Lecture</option>
                                     <option value="laboratory">Laboratory</option>
                                     <option value="department">Department</option>
                                     <option value="office">Office</option>

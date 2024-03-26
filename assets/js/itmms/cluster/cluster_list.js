@@ -50,6 +50,7 @@ $( function( $ ) {
             { 'data': 'cluster_code' },
             { 'data': 'cluster_name' },
             { 'data': 'type', 'sClass': 'caps' },
+            { 'data': 'num_classrooms' },
             { 'data': 'actions' },
         ],
         'columnDefs': [

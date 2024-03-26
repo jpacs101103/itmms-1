@@ -146,20 +146,43 @@ function ajax_get_computer(cluster_id){
             $computer.append( $loader );
         },
         success: function( result ){
-            if( result instanceof Array ) {
+            $computer.empty();
+
+            if( result instanceof Array && result.length > 0 ) {
                 var $select = $('<option />');
                     $select.attr('value', 'NA').text('Not Applicable');
 
-                $computer.empty();
                 $computer.append($select);
 
+                var groups = {
+                    'department': $('<optgroup label="Department"></optgroup>'),
+                    'office': $('<optgroup label="Office"></optgroup>'),
+                    'laboratory': $('<optgroup label="Laboratory"></optgroup>'),
+                    'lecture': $('<optgroup label="Lecture"></optgroup>'),
+                };
                 $.each(result, function(index, value){
-                    var $option = $( '<option />' );
+                    var computer = result[index];
 
+                    var $option = $( '<option />' );
                     $option.attr( 'value', result[ index ].computer_name ).text( result[index].computer_name );
-                    $computer.append( $option );
+
+                    groups[computer.designation_type].append($option);
                 });
 
+                Object.keys(groups).forEach(groupKey => {
+                    if(groups[groupKey].children().length) {
+                        $computer.append(groups[groupKey]);
+                    }
+                });
+            } else {
+                var $select = $('<option />');
+                    $select.attr({
+                        'value': 'NA',
+                        'disabled': true,
+                        'selected': true
+                    }).text('No computers assigned to selected designation');
+
+                $computer.append($select);
             }
         },
         error : function( xhr, status ){
@@ -206,8 +229,8 @@ function ajax_get_clusters(){
 }
 
 
-function ajax_get_classroom_designation_for_computer( type ){
-    var $room = $( '#designation' );
+function ajax_get_classroom_designation_for_computer( type, designationId = 'designation' ){
+    var $room = $( '#' + designationId );
 
     return $.ajax({
         url : 'ajax_classroom/get_classroom_details_by_type/' + type,
@@ -221,6 +244,7 @@ function ajax_get_classroom_designation_for_computer( type ){
             $room.append( $loader );
         },
         success: function( result ){
+            console.log('result',result)
             if( result instanceof Array ) {
                 var $select = $('<option />');
 
@@ -229,7 +253,8 @@ function ajax_get_classroom_designation_for_computer( type ){
                 $.each(result, function(index, value){
                     var $option = $( '<option />' );
 
-                    $option.attr( 'value', result[ index ].room_no ).text( result[index].room_no );
+                    var room = result[index];
+                    $option.attr( 'value', room.room_no ).text( room.cluster_code + ' - ' + room.room_no );
                     $room.append( $option );
                 });
 
@@ -241,8 +266,8 @@ function ajax_get_classroom_designation_for_computer( type ){
     });
 }
 
-function ajax_get_cluster_designation_for_computer( type ){
-    var $room = $( '#designation' );
+function ajax_get_cluster_designation_for_computer( type, designationId = 'designation' ){
+    var $room = $( '#' + designationId );
 
     return $.ajax({
         url : 'ajax_cluster/get_cluster_details_by_type/' + type,

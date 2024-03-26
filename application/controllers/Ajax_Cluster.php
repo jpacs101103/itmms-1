@@ -10,7 +10,7 @@ class Ajax_Cluster extends Ajax_Controller {
         parent::__construct();
 
         if(!$this->input->is_ajax_request()) {
-            redirect( '403' ); 
+            redirect( '403' );
         }
 
     }

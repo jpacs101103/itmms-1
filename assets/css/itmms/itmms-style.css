@@ -962,6 +962,12 @@ label.form-valid {
   line-height: 12px;
 }
 
+.toggle-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .user-logged-in span{
   padding-left: 31px;
 }

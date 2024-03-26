@@ -37,7 +37,7 @@
         <span class="btn-group" role="group">
             <button type="button" class="btn btn-default active" data-role="type">All</button>
             <button type="button" class="btn btn-default" data-role="type">Laboratory</button>
-            <button type="button" class="btn btn-default" data-role="type">E-Room</button>
+            <button type="button" class="btn btn-default" data-role="type">Lecture</button>
         </span>
     </div>
 </div>

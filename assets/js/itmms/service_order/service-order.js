@@ -19,6 +19,26 @@ $( function( $ ) {
 
     $('.complaint').hide();
 
+    // $( document ).on( 'change', '#designation_type', function(){
+    //     var value = $(this).val();
+
+    //     if( value ) {
+    //         switch(value){
+    //             case 'laboratory':
+    //             case 'lecture':
+    //                 ajax_get_classroom_designation_for_computer(value, 'cluster_id');
+    //                 break;
+    //             case 'department':
+    //             case 'office':
+    //                 ajax_get_cluster_designation_for_computer(value, 'cluster_id');
+    //                 break;
+    //         }
+    //     }
+    //     else{
+    //         $('#designation').prop('disabled', false).empty().append('<option default value="">Not yet selected</option>');
+    //     }
+    // });
+
     $('#new_complaint').prop('disabled', false).empty().append('<option default disabled value="">Not yet selected</option>');
     $( document ).on( 'change', '#complaint_type', function(){
         var value = $(this).val();
