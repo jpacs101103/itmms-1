@@ -276,9 +276,7 @@ $( function( $ ) {
 
                 const count = data.length;
                 if (count > 0) {
-                    $(".health-devices-count").text(count > 9 ? '9+' : count);
-                } else {
-                    $(".health-devices-count").hide();
+                    $(".health-devices-count").text(count > 9 ? '9+' : count).show();
                 }
             },
             error: function( xhr, status ) {

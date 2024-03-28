@@ -442,7 +442,7 @@ function getLowestHealthPart(parts) {
     }
 
     return {
-        lowestHealthPercentage,
+        lowestHealthPercentage: Math.max(lowestHealthPercentage, 0),
         lowestHealthPart,
     };
 }

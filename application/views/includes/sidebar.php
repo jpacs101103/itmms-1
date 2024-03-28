@@ -12,7 +12,7 @@
     <ul class="sidebar-nav content-sidebar" id="sidebar">
         <li>
             <a class="sidebar-item sidebar-item--dashboard" href="dashboard" title="Dashboard">
-                <span>Dashboard <span class="health-devices-count"></span></span>
+                <span>Dashboard <span class="health-devices-count" style="display: none;"></span></span>
                 <span class="fa fa-dashboard fg-gold sub-icon"></span>
             </a>
         </li>
