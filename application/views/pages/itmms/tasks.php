@@ -15,8 +15,7 @@
                 <button type="button" class="btn btn-default active" data-role="status">Urgent</button>
                 <button type="button" class="btn btn-default" data-role="status">Received</button>
                 <button type="button" class="btn btn-default" data-role="status">Pending</button>
-<!--                 <button type="button" class="btn btn-default" data-role="status">Replaced</button> -->
-                <button type="button" class="btn btn-default" data-role="status">Close</button>
+                <button type="button" class="btn btn-default" data-role="status" data-value="close">Resolved</button>
                 <button type="button" class="btn btn-default" data-role="status">Void</button>
                 <button type="button" class="btn btn-default" data-role="status">All</button>
             </span>

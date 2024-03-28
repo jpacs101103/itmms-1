@@ -9,7 +9,9 @@ $( function( $ ) {
 
     $('[data-role="status"]').click(function(e){
         $(this).addClass('active').siblings().removeClass('active');
-        obj.status = $('.active[data-role="status"]').text().toLowerCase();
+
+        const activeStatus = $('.active[data-role="status"]');
+        obj.status = activeStatus.data('value') || activeStatus.text().toLowerCase();
         obj.user_task_list.ajax.reload();
     });
 
@@ -120,7 +122,7 @@ $( function( $ ) {
                                                 <a href="javascript:void(0)" data-method="print" data-bind="print_service_order_form" data-id="' + row.ref_no + '" id="print_service_order_form"><i class="fa fa-print fa-fw"></i> Print Form</a> \
                                             </li> \
                                             <li> \
-                                                <a href="javascript:void(0)" data-method="replaced" data-bind="confirmation" data-id="' + row.ref_no + '"><i class="fa fa-check-square-o fa-fw fg-orange"></i> Close</a> \
+                                                <a href="javascript:void(0)" data-method="replaced" data-bind="confirmation" data-id="' + row.ref_no + '"><i class="fa fa-check-square-o fa-fw fg-green"></i> Resolve</a> \
                                             </li>';
                                     }
                                    /* else if(obj.status === 'replaced') {
@@ -222,13 +224,13 @@ $( function( $ ) {
                 if( result.status )
                 {
                     obj.user_task_list.ajax.reload();
-                    toastr.success( 'Marked as Close!', "itmms | Service Order" );
+                    toastr.success( 'Marked as Resolved!', "itmms | Service Order" );
 
                     $small_modal.modal( 'hide' );
                 }
                 else
                 {
-                    toastr.error( 'Unable to mark as Close', " itmms | Service Order" );
+                    toastr.error( 'Unable to mark as Resolved', " itmms | Service Order" );
                 }
             },
             error : function( xhr, status ){

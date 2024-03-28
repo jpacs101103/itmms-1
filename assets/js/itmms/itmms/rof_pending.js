@@ -10,7 +10,9 @@ $( function( $ ) {
 
     $('[data-role="status"]').click(function(e){
         $(this).addClass('active').siblings().removeClass('active');
-        obj.status = $('.active[data-role="status"]').text().toLowerCase();
+
+        const activeStatus = $('.active[data-role="status"]');
+        obj.status = activeStatus.data('value') || activeStatus.text().toLowerCase();
         obj.user_rof_pending_list.ajax.reload();
     });
 

@@ -108,7 +108,7 @@
                 </div>
                 <div class="col-sm-6 margin-negative-top" id="property_date">
                     <div class="inner-addon right-addon">
-                        <div class="col-sm-6 margin-negative-left">Date Close:</div>
+                        <div class="col-sm-6 margin-negative-left">Date Resolved:</div>
                         <i class="fa fa-calendar margin-top"></i>
                         <input type='text' class="form-control" id="property_date_received" name="property_date_received" placeholder="Input Date Replaced"/>
                     </div>
