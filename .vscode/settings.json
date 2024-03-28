@@ -1,6 +1,6 @@
 {
   "search.exclude": {
-    "**/system": true
+    "**/system": true,
   },
   "files.exclude": {
     "**/system": true

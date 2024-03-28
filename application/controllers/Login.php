@@ -24,7 +24,6 @@ class Login extends MY_Controller {
                  // Styles
                  ->add_local_styles('assets/css/itmms/itmms-login')
                  // Scripts
-                 ->add_local_scripts('assets/js/backstretch/jquery.backstretch.min')
                  ->add_local_scripts('assets/js/itmms/login/login');
         }
     }

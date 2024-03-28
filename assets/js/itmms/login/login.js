@@ -2,7 +2,6 @@ $( function( $ ) {
     var obj = {};
     init();
     validate();
-    backstrech_login_background();
 
     ajax_login = function ( $form ){
         var $submit = $form.find( '[type="submit"]' );
@@ -73,9 +72,4 @@ $( function( $ ) {
             }
         });
     }
-
-    function backstrech_login_background() {
-        $.backstretch("assets/images/backgrounds/CITU.jpg");
-    }
-
 });
