@@ -49,7 +49,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h4>Computers</h4>
+        <h4>Devices</h4>
     </div>
 
     <?php
