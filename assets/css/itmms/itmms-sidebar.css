@@ -357,3 +357,34 @@
   font-family: FontAwesome;
   text-decoration: inherit;
 }
+
+.sidebar-item--dashboard {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+
+.sidebar-item--dashboard > span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar-item--dashboard .health-devices-count {
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  width: 20px;
+  flex-shrink: 0;
+  background-color: #e5b524;
+  border-radius: 50%;
+
+  font-family: Tahoma;
+  font-size: 10px !important;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  text-indent: 0 !important;
+  line-height: 1em !important;  
+}

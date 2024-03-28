@@ -283,7 +283,7 @@ class Computer_Model extends MY_Model{
         return $query->num_rows();
     }
 
-    public function get_computers($data, $details = false) {
+    public function get_computers($data) {
         extract($data);
         $params = [];
 

@@ -36,6 +36,7 @@ class Layout {
                  ->add_global_scripts('assets/js/jquery-date-format/dateFormat')
                  ->add_global_scripts('assets/js/jquery-date-format/jquery.dateFormat')
                  ->add_global_scripts('assets/js/itmms/helper/itmms-helper')
+                 ->add_global_scripts('assets/js/moment/moment')
                  ->add_local_scripts('assets/js/itmms/helper/itmms-script')
                  ->add_local_scripts('assets/js/itmms/itmms/profile');
 

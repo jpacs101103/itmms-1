@@ -10,7 +10,7 @@ $( function( $ ) {
     obj.total = $('.total').text();
 
     timeline();
-    
+
     classroom_bar_graph( $('#classroom_report_year').val() );
     cluster_bar_graph( $('#cluster_report_year').val() );
 
@@ -177,8 +177,6 @@ $( function( $ ) {
             }
         });
     }
-
-
 
     function classroom_bar_graph(year) {
         $.ajax({

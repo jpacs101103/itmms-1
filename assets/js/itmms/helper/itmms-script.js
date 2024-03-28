@@ -9,6 +9,7 @@ $( function( $ ) {
     active_ribbon();
     full_screen();
     itmms_print();
+    display_critical_count();
 
     function itmms_print() {
         $("#print-all-graphs").on('click', function() {
@@ -211,7 +212,7 @@ $( function( $ ) {
 
             $.ajax({
                 url: 'ajax_user/update_user_sidebar_status'
-            }); 
+            });
         });
     }
 
@@ -220,7 +221,7 @@ $( function( $ ) {
             e.preventDefault();
             $.ajax({
                 url: 'ajax_user/update_pass_alert_status'
-            }); 
+            });
         });
     }
 
@@ -251,6 +252,38 @@ $( function( $ ) {
                     $(this).popover('hide');
                 }
             });
+        });
+    }
+
+    function display_critical_count() {
+        $.ajax({
+            url : 'ajax_computer/get_computer_details_for_table',
+            type : 'get',
+            dataType : 'json',
+            data : {
+                draw: 1,
+                start: 0,
+                length: 9999
+            },
+            success: function( response ) {
+                const data = response.data.filter((device) => {
+                    const { lowestHealthPercentage } = getLowestHealthPart(
+                        device.parts
+                    );
+
+                    return lowestHealthPercentage <= 10;
+                });
+
+                const count = data.length;
+                if (count > 0) {
+                    $(".health-devices-count").text(count > 9 ? '9+' : count);
+                } else {
+                    $(".health-devices-count").hide();
+                }
+            },
+            error: function( xhr, status ) {
+                alert( xhr.responseText );
+            }
         });
     }
 });

@@ -26,58 +26,93 @@ $( function( $ ) {
         }
     });
 
-    obj.computer_list = $('#computer-list').DataTable({
-        'processing': true,
-        'serverSide': true,
-        'responsive': true,
-        'ajax': 'ajax_computer/get_computer_details_for_table',
-        'deferRender': true,
-        'order': [[0, 'asc']],
-        'columns': [
-            { 'data': 'computer_id', 'sClass': 'text-center'},
-            { 'data': 'computer_name' },
-            { 'data': 'computer_type' },
-            { 'data': 'brand_clone_name' },
-            { 'data': 'designation' },
-            { 'data': 'assigned_to' },
-            { 'data': 'dummy' },
-        ],
-        'columnDefs': [
-            {
-                'data': 'actions',
-            // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ERRRRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-                'targets': -1,
-                'sortable': false,
-                'render' : function ( data, type, row ) {
-                    var html = '<div class="text-center"> \
-                            <div class="btn-group"> \
-                                <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-itmms" data-toggle="dropdown"> \
-                                    <i class="fa fa-chevron-down fa-fw"></i> \
-                                </button> \
-                                <ul class="dropdown-menu pull-right" role="menu"  style="padding: 0 0 7px 0"> \
-                                    <li> \
-                                        <span class="dropdown-title text-center">Action Bar</span> \
-                                    </li> \
-                                    <li> \
-                                        <a href="monitoring/' + row.computer_id + '">\
-                                            <i class="fa fa fa-external-link fa-fw fg-cyan"></i> View Parts</a> \
-                                    </li> \
-                                </ul> \
-                            </div> \
-                        </div>';
-                    return html;
+    obj.computer_list = $('#computer-list')
+        .on('init.dt', function() {
+            tippy('[data-tippy-content]');
+        })
+        .DataTable({
+            'processing': true,
+            'serverSide': true,
+            'responsive': true,
+            'ajax': 'ajax_computer/get_computer_details_for_table',
+            'deferRender': true,
+            'order': [[0, 'asc']],
+            'columns': [
+                { 'data': 'computer_id', 'sClass': 'text-center'},
+                { 'data': 'computer_name' },
+                { 'data': 'computer_type' },
+                { 'data': 'lifespan_left', 'sClass': 'text-center' },
+                { 'data': 'brand_clone_name' },
+                { 'data': 'designation' },
+                { 'data': 'assigned_to' },
+                { 'data': 'dummy' },
+            ],
+            'columnDefs': [
+                {
+                    'data': 'lifespan_left',
+                    'targets': 3,
+                    'sortable': false,
+                    'render' : function ( data, type, row ) {
+                        const parts = row.parts;
+                        let lowestHealthPercentage= 100;
+                        let lowestHealthPart = {};
+
+                        if(parts.length > 0) {
+                            parts.forEach(part => {
+                                const dateCreated = moment(part.date_created, 'YYYY-MM-DD HH:mm:ss');
+                                const endDate = getEndDate(part.depreciation_value, dateCreated)
+                                const healthPercentage = getHealthPercentage(endDate, dateCreated);
+
+                                if(lowestHealthPercentage > healthPercentage) {
+                                    lowestHealthPercentage = healthPercentage;
+                                    lowestHealthPart = part;
+                                }
+                            });
+                        }
+
+                        const labelClass = getHealthPercentageClassLabel(lowestHealthPercentage);
+
+                        return `
+                            <span class="monitoring-health label ${labelClass}" data-tippy-content="Part Name: ${lowestHealthPart.parts_name}">${lowestHealthPercentage}%
+                                ${lowestHealthPercentage <= 10 ? `<i class="fa fa-info-circle fa-fw"></i>` : ''}
+                            </span>
+                        `;
+                    }
+                },
+                {
+                    'data': 'actions',
+                    'targets': -1,
+                    'sortable': false,
+                    'render' : function ( data, type, row ) {
+                        var html = '<div class="text-center"> \
+                                <div class="btn-group"> \
+                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-itmms" data-toggle="dropdown"> \
+                                        <i class="fa fa-chevron-down fa-fw"></i> \
+                                    </button> \
+                                    <ul class="dropdown-menu pull-right" role="menu"  style="padding: 0 0 7px 0"> \
+                                        <li> \
+                                            <span class="dropdown-title text-center">Action Bar</span> \
+                                        </li> \
+                                        <li> \
+                                            <a href="monitoring/' + row.computer_id + '">\
+                                                <i class="fa fa fa-external-link fa-fw fg-cyan"></i> View Parts</a> \
+                                        </li> \
+                                    </ul> \
+                                </div> \
+                            </div>';
+                        return html;
+                    }
                 }
+            ],
+            'language': {
+                "processing": '<div class="processing-wrapper"> \
+                                    <div><i class="fa fa-spinner fa-spin"></i> Fetching ... Please wait...</div> \
+                                </div>',
+                'emptyTable': 'No computer(s) available in the database!',
+                'zeroRecords': 'No computer found!',
+                "infoFiltered": ""
             }
-        ],
-        'language': {
-            "processing": '<div class="processing-wrapper"> \
-                                <div><i class="fa fa-spinner fa-spin"></i> Fetching ... Please wait...</div> \
-                            </div>',
-            'emptyTable': 'No computer(s) available in the database!',
-            'zeroRecords': 'No computer found!',
-            "infoFiltered": ""
-        }
-    });
+        });
 
     obj.ajax_update_computer_details = function ( $form, $modal ){
         var $submit = $form.find( '[type="submit"]' );

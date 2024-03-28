@@ -1,3 +1,5 @@
+<div class="hidden" id="user_type"><?php echo $sess_user_type; ?></div>
+
 <div id="all-graphs">
     <div class="row" style="position: relative; top: 15px; z-index: 1">
         <div class="col-lg-3">&nbsp;</div>
@@ -6,9 +8,9 @@
             <div class="not-printable pull-right">
                 <small><b>Select Year:&nbsp;</b></small>
                 <select id="classroom_report_year" style="border-radius: 2px;">
-                    <?php for($x=date('Y'); $x>=1946; $x--) { ?>
+                    <?php for ($x = date('Y'); $x >= 1946; $x--) { ?>
                         <option value='<?php echo $x ?>'>
-                                <?php echo $x ?>
+                            <?php echo $x ?>
                         </option>
                     <?php } ?>
                 </select>
@@ -18,9 +20,9 @@
             <div class="not-printable pull-right">
                 <small><b>Select Year:&nbsp;</b></small>
                 <select id="cluster_report_year" style="border-radius: 2px;">
-                    <?php for($x=date('Y'); $x>=1946; $x--) { ?>
+                    <?php for ($x = date('Y'); $x >= 1946; $x--) { ?>
                         <option value='<?php echo $x ?>'>
-                                <?php echo $x ?>
+                            <?php echo $x ?>
                         </option>
                     <?php } ?>
                 </select>
@@ -50,7 +52,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-3 col-md-3 col-xs-3" style="padding-left: 5px; padding-right: 5px">
+        <div class="col-lg-3 col-md-3 col-xs-3" style="padding-right: 5px">
             <div class="panel panel-default width100 print-this" id="report-graph">
 
                 <div class="panel-body fullscreen-rs">
@@ -75,7 +77,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-xs-3" style="padding-left: 5px; padding-right: 5px">
+        <div class="col-lg-3 col-md-3 col-xs-3" style="padding-left: 5px;">
             <div class="panel panel-default width100" id="cluster-graph">
 
                 <div class="panel-body fullscreen-clr">
@@ -85,16 +87,42 @@
         </div>
     </div>
 </div>
+
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="itmms-page-header">
-            <i class="fa fa-download fa-fw"></i>
-            <?php echo  "Services Report" ?>
-        </h1>
+        <h2 class="itmms-page-header" id="health-table-heading">
+            <i class="fa fa-exclamation-triangle fa-fw"></i> Critical Health Devices <span class="count"></span>
+        </h2>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <table class="table table-hover table-bordered width100" id="health-table">
+                        <thead>
+                            <tr>
+                                <th>Designation</th>
+                                <th data-priority="3">Assigned Name</th>
+                                <th>Device Type</th>
+                                <th>Health</th>
+                                <th>Specification Details</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<div class="hidden" id="user_type"><?php echo $sess_user_type; ?></div>
+
 <div class="row">
+    <div class="col-lg-12">
+        <h2 class="itmms-page-header">
+            <i class="fa fa-download fa-fw"></i> Services Report
+        </h2>
+    </div>
+
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-body">

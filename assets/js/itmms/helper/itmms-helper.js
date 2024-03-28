@@ -191,7 +191,6 @@ function ajax_get_computer(cluster_id){
     });
 }
 
-
 function ajax_get_clusters(){
     var $cluster_id = $( '#cluster_id' );
 
@@ -227,7 +226,6 @@ function ajax_get_clusters(){
         }
     });
 }
-
 
 function ajax_get_classroom_designation_for_computer( type, designationId = 'designation' ){
     var $room = $( '#' + designationId );
@@ -388,4 +386,63 @@ function init() {
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
     }
+}
+
+function getEndDate(date, dateCreated) {
+    const [number, type] = date.split(' ');
+    const endDate = dateCreated.clone();
+    endDate.add(number, type.includes('month')? 'M' : 'y');
+    return endDate;
+}
+
+function getHealthPercentage(endDate, dateCreated) {
+    const today = moment();
+    const total = endDate.diff(dateCreated);
+    const current = endDate.diff(today);
+
+    return Math.floor((current/total) * 100);
+}
+
+function getHealthPercentageClassLabel(healthPercentage) {
+    let labelClass = 'label-success';
+
+    if (healthPercentage <= 10) {
+        labelClass = 'label-danger';
+    } else if(healthPercentage <= 30) {
+        labelClass = 'label-warning';
+    }
+
+    return labelClass;
+}
+
+function getLowestHealthPart(parts) {
+    let lowestHealthPercentage = 100;
+    let lowestHealthPart = {};
+
+    if (parts.length > 0) {
+        parts.forEach((part) => {
+            const dateCreated = moment(
+                part.date_created,
+                "YYYY-MM-DD HH:mm:ss"
+            );
+            const endDate = getEndDate(
+                part.depreciation_value,
+                dateCreated
+            );
+            const healthPercentage = getHealthPercentage(
+                endDate,
+                dateCreated
+            );
+
+            if (lowestHealthPercentage > healthPercentage) {
+                lowestHealthPercentage = healthPercentage;
+                lowestHealthPart = part;
+            }
+        });
+    }
+
+    return {
+        lowestHealthPercentage,
+        lowestHealthPart,
+    };
 }

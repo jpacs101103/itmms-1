@@ -25,21 +25,21 @@
                                     <option value="">Select Device Type</option>
                                     <option value="branded">Branded Computer</option>
                                     <option value="cloned">Cloned Computer</option>
-                                    <option value="monitor">Monitor</option>
-                                    <option value="power supply">Power Supply</option>
-                                    <option value="memory">Memory</option>
+                                    <option value="ap">Access Point</option>
                                     <option value="hard drive">Hard Disk</option>
-                                    <option value="motherboard">Motherboard</option>
                                     <option value="keyboard">Keyboard</option>
+                                    <option value="media converter">Media Converter</option>
+                                    <option value="memory">Memory</option>
+                                    <option value="monitor">Monitor</option>
+                                    <option value="motherboard">Motherboard</option>
                                     <option value="mouse">Mouse</option>
+                                    <option value="power supply">Power Supply</option>
                                     <option value="printer">Printer</option>
+                                    <option value="router">Router</option>
+                                    <option value="sfp">Small Form-factor Pluggable</option>
+                                    <option value="switch">Switch</option>
                                     <option value="tv">TV</option>
                                     <option value="ups">UPS</option>
-                                    <option value="ap">Access Point</option>
-                                    <option value="switch">Switch</option>
-                                    <option value="router">Router</option>
-                                    <option value="media converter">Media Converter</option>
-                                    <option value="sfp">Small Form-factor Pluggable</option>
                                     <option value="others">Others</option>
                                 </select>
                             </div>

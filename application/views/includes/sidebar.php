@@ -11,8 +11,8 @@
     </ul>
     <ul class="sidebar-nav content-sidebar" id="sidebar">
         <li>
-            <a class="sidebar-item" href="dashboard" title="itmms Dashboard">
-                Dashboard
+            <a class="sidebar-item sidebar-item--dashboard" href="dashboard" title="Dashboard">
+                <span>Dashboard <span class="health-devices-count"></span></span>
                 <span class="fa fa-dashboard fg-gold sub-icon"></span>
             </a>
         </li>
@@ -35,7 +35,7 @@
         <li id="users">
             <a class="sidebar-item pop"
                  href="javascript:void(0)"
-                 title="<b>User</b>"
+                 title="User"
                  rel="popover"
                  data-popover-content="#user-pop">Accounts
                     <span class="fa fa-users fg-gold sub-icon"></span>
@@ -62,7 +62,7 @@
         <li id="clusters">
            <a class="sidebar-item"
                 href="javascript:void(0)"
-                title="<b>Locations</b>"
+                title="Locations"
                 rel="popover"
                 data-popover-content="#cluster-pop">Locations
                 <span class="fa fa-location-arrow fg-gold sub-icon"></span>
@@ -130,7 +130,7 @@
         <li id="computers">
             <a class="sidebar-item"
                  href="javascript:void(0)"
-                 title="<b>Computer</b>"
+                 title="Computer"
                  rel="popover"
                  data-popover-content="#computer-pop">Devices
                     <span class="fa fa-desktop fg-gold sub-icon"></span>
@@ -172,7 +172,7 @@
         <li id="reports">
             <a class="sidebar-item pop"
                  href="javascript:void(0)"
-                 title="<b>Report</b>"
+                 title="Report"
                  rel="popover"
                  data-popover-content="#report-pop">
                     Reports

@@ -33,6 +33,9 @@ class monitoring extends MY_Controller {
             ->add_local_scripts('assets/js/datatables/datatables-jquery')
             ->add_local_scripts('assets/js/datatables/datatables-bootstrap', TRUE)
             ->add_local_scripts('assets/js/datatables/dataTables.responsive', TRUE)
+            ->add_local_scripts('assets/js/moment/moment')
+            ->add_local_scripts('assets/js/tippy/popper')
+            ->add_local_scripts('assets/js/tippy/tippy')
 
             ->add_local_scripts('assets/js/itmms/monitoring/monitoring');
     }

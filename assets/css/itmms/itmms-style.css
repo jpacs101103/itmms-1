@@ -1754,3 +1754,7 @@ table#cluster-report tbody tr:last-child td {
 .computer-parts-item {
   padding-bottom: 15px;
 }
+
+.monitoring-health {
+  font-size: 1.25rem;
+}

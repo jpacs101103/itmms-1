@@ -4,7 +4,7 @@
      <h1 class="itmms-page-header">
             <i class="fa fa-line-chart fa-fw"></i>
             <?php echo  preg_replace('/[^a-zA-Z0-9]/', ' ', ucwords($controller)) ?>
-        </h1>        
+        </h1>
         </div>
     </div>
     <div class="row">
@@ -18,6 +18,7 @@
                                     <th class="text-center" data-priority="1">ID</th>
                                     <th data-priority="3">Assigned Name</th>
                                     <th>Device Type</th>
+                                    <th>Health</th>
                                     <th>Specification Details</th>
                                     <th>Designation</th>
                                     <th>Assigned To</th>
