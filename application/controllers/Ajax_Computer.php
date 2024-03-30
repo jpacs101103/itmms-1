@@ -207,8 +207,10 @@ class Ajax_Computer extends Ajax_Controller {
 
             $computers = $this->computer->get_computers($ajax_data);
 
-            foreach ($computers as &$computer) {
-                $computer->parts = $this->computer->get_computer_parts($computer->computer_id);
+            if($computers) {
+                foreach ($computers as &$computer) {
+                    $computer->parts = $this->computer->get_computer_parts($computer->computer_id);
+                }
             }
 
             $data['data'] = $computers;
