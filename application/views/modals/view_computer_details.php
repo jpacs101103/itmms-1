@@ -1,7 +1,7 @@
 <div class="modal-content">
     <div class="modal-header">
     <button type="button" class="pull-right btn btn-default btn-danger btn-circle" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title" id="myModalLabel">Computer Details</h4>
+        <h4 class="modal-title" id="myModalLabel">Device Details</h4>
     </div>
     <div class="modal-body">
         <div class="row">
@@ -15,10 +15,10 @@
                             <h4 class="divider-modal"><span id="computer_name"></span></h4>
                         </div>
                         <div>
-                            Computer ID: </i><span id="computer_id"></span>
+                            Device ID: </i><span id="computer_id"></span>
                         </div>
                         <div>
-                            Computer Type: <span id="computer_type"></span>
+                            Device Type: <span id="computer_type"></span>
                         </div>
                         <div>
                             Brand / Clone Name: <span id="brand_clone_name"></span>

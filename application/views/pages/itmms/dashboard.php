@@ -42,7 +42,7 @@
         </div>
         <div class="col-lg-3 col-md-3 col-xs-3">
             <span style="margin-left: 10px">
-                <i class="fa fa-university"></i> <b>Lecture Room & Computer Laboratory</b>
+                <i class="fa fa-university"></i> <b>Lecture & Laboratory</b>
             </span>
         </div>
         <div class="col-lg-3 col-md-3 col-xs-3">

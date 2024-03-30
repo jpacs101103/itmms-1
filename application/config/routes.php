@@ -120,14 +120,14 @@ $route['office/(:any)'] = 'cluster/office_ws/$1/$2';
 
 /*
 | -------------------------------------------------------------------------
-| ROUTE FOR #COMPUTER
+| ROUTE FOR #DEVICE
 | -------------------------------------------------------------------------
 */
 
-$route['new/computer'] = 'computer/computer';
-$route['manage/computers'] = 'computer/computer_list';
-$route['new/resource'] = 'computer/computer_resource';
-$route['manage/resources'] = 'computer/computer_resource_list';
+$route['new/device'] = 'device/device';
+$route['manage/devices'] = 'device/devices_list';
+$route['new/resource'] = 'device/device_resource';
+$route['manage/resources'] = 'device/device_resource_list';
 
 /*
 | -------------------------------------------------------------------------

@@ -130,7 +130,7 @@
         <li id="computers">
             <a class="sidebar-item"
                  href="javascript:void(0)"
-                 title="Computer"
+                 title="Device"
                  rel="popover"
                  data-popover-content="#computer-pop">Devices
                     <span class="fa fa-desktop fg-gold sub-icon"></span>
@@ -138,13 +138,13 @@
             <div id="computer-pop" class="hidden">
                 <ul>
                     <li>
-                        <a href='new/computer' title="New Computer">
+                        <a href='new/device' title="New Device">
                             <i class='fa fa-plus-square'></i>
                             New
                         </a>
                     </li>
                     <li>
-                        <a href='manage/computers' title="Manage Computers">
+                        <a href='manage/devices' title="Manage Devices">
                             <i class='fa fa-external-link'></i>
                             Manage
                         </a>

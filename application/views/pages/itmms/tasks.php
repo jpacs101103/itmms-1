@@ -146,11 +146,11 @@
             </tr>
             <tr>
                 <td colspan="3"></td>
-                <td style="border-left: 1px solid #000;"><span>&nbsp;&nbsp;User Sign Off:</td>
+                <td style="border-left: 1px solid #000;"><span>&nbsp;&nbsp;User Sign Off:</span></td>
             </tr>
             <tr>
                 <td colspan="3"></td>
-                <td class="text-center" style="border-left: 1px solid #000;"><span class="underline-top">&nbsp;&nbsp;Signature over Printed Name</td>
+                <td class="text-center" style="border-left: 1px solid #000;"><span class="underline-top">&nbsp;&nbsp;Signature over Printed Name</span></td>
             </tr>
             <tr>
                 <td colspan="3">&nbsp;</td>
@@ -158,11 +158,21 @@
             </tr>
             <tr>
                 <td colspan="3"></td>
-                <td class="text-center" style="border-left: 1px solid #000; "><span class="underline-top">&nbsp;&nbsp;Property Clerk / Date</td>
+                <td class="text-center" style="border-left: 1px solid #000; "><span class="underline-top">&nbsp;&nbsp;Property Clerk / Date</span></td>
             </tr>
             <tr>
                 <td colspan="3"></td>
-                <td class="text-center" style="border-left: 1px solid #000;"><span>&nbsp;&nbsp;Signature over Printed Name</td>
+                <td class="text-center" style="border-left: 1px solid #000;"><span>&nbsp;&nbsp;Signature over Printed Name</span></td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <td style="border-left: 1px solid #000;"><span>&nbsp;</span></td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <td class="text-center" style="border-left: 1px solid #000;">
+                <div>Larmis S. Feliscuzo</div>
+                <span class="underline-top">&nbsp;&nbsp;MIS Director Signature</span></td>
             </tr>
             <tr>
                 <td class="underline-top" colspan="4"></td>
@@ -264,11 +274,11 @@
             </tr>
             <tr>
                 <td colspan="3"></td>
-                <td style="border-left: 1px solid #000;"><span>&nbsp;&nbsp;User Sign Off:</td>
+                <td style="border-left: 1px solid #000;"><span>&nbsp;&nbsp;User Sign Off:</span></td>
             </tr>
             <tr>
                 <td colspan="3"></td>
-                <td class="text-center" style="border-left: 1px solid #000;"><span class="underline-top">&nbsp;&nbsp;Signature over Printed Name</td>
+                <td class="text-center" style="border-left: 1px solid #000;"><span class="underline-top">&nbsp;&nbsp;Signature over Printed Name</span></td>
             </tr>
             <tr>
                 <td colspan="3">&nbsp;</td>
@@ -276,11 +286,21 @@
             </tr>
             <tr>
                 <td colspan="3"></td>
-                <td class="text-center" style="border-left: 1px solid #000; "><span class="underline-top">&nbsp;&nbsp;Property Clerk / Date</td>
+                <td class="text-center" style="border-left: 1px solid #000; "><span class="underline-top">&nbsp;&nbsp;Property Clerk / Date</span></td>
             </tr>
             <tr>
                 <td colspan="3"></td>
-                <td class="text-center" style="border-left: 1px solid #000;"><span>&nbsp;&nbsp;Signature over Printed Name</td>
+                <td class="text-center" style="border-left: 1px solid #000;"><span>&nbsp;&nbsp;Signature over Printed Name</span></td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <td style="border-left: 1px solid #000;"><span>&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <td class="text-center" style="border-left: 1px solid #000;">
+                <div>Larmis S. Feliscuzo</div>
+                <span class="underline-top">&nbsp;&nbsp;MIS Director Signature</span></td>
             </tr>
             <tr>
                 <td class="underline-top" colspan="4"></td>

@@ -53,28 +53,22 @@ $( function( $ ) {
                     'targets': 3,
                     'sortable': false,
                     'render' : function ( data, type, row ) {
-                        const parts = row.parts;
-                        let lowestHealthPercentage= 100;
-                        let lowestHealthPart = {};
-
-                        if(parts.length > 0) {
-                            parts.forEach(part => {
-                                const dateCreated = moment(part.date_created, 'YYYY-MM-DD HH:mm:ss');
-                                const endDate = getEndDate(part.depreciation_value, dateCreated)
-                                const healthPercentage = getHealthPercentage(endDate, dateCreated);
-
-                                if(lowestHealthPercentage > healthPercentage) {
-                                    lowestHealthPercentage = healthPercentage;
-                                    lowestHealthPart = part;
-                                }
-                            });
-                        }
-
-                        const labelClass = getHealthPercentageClassLabel(lowestHealthPercentage);
+                        const {
+                            lowestHealthPercentage: health,
+                            lowestHealthPart: part,
+                        } = getLowestHealthPart(row.parts);
 
                         return `
-                            <span class="monitoring-health label ${labelClass}" data-tippy-content="Part Name: ${lowestHealthPart.parts_name}">${lowestHealthPercentage}%
-                                ${lowestHealthPercentage <= 10 ? `<i class="fa fa-info-circle fa-fw"></i>` : ''}
+                            <span class="monitoring-health label ${getHealthPercentageClassLabel(
+                                health
+                            )}" data-tippy-content="Part Name: ${
+                            part.parts_name
+                        }">${health}%
+                                ${
+                                    health <= 10
+                                        ? `<i class="fa fa-info-circle fa-fw"></i>`
+                                        : ""
+                                }
                             </span>
                         `;
                     }
@@ -128,12 +122,12 @@ $( function( $ ) {
             success : function( result ) {
                 if(result.status){
                     obj.computer_list.ajax.reload();
-                    toastr.success('Sucessfully updated!', "itmms | Computer");
+                    toastr.success('Sucessfully updated!', "itmms | Device");
 
                     $modal.modal( 'hide' );
                 }
                 else{
-                    toastr.error( "Nothing to update", "itmms | Computer" );
+                    toastr.error( "Nothing to update", "itmms | Device" );
                 }
 
                 $submit.text( 'Update' ).prop( 'disabled', false );
@@ -266,7 +260,7 @@ $( function( $ ) {
             },
             messages : {
                 computer_type : {
-                    required : "Computer type is required"
+                    required : "Device type is required"
                 },
                 brand_clone_name : {
                     required : "Brand / Clone name is required"

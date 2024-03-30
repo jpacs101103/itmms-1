@@ -1,7 +1,7 @@
 <div class="modal-content">
     <div class="modal-header">
         <button type="button" class="pull-right btn btn-default btn-danger btn-circle" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title" id="myModalLabel">Computer History</h4>
+        <h4 class="modal-title" id="myModalLabel">Device History</h4>
     </div>
     <div class="modal-body">
        <div class="row">

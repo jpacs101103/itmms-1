@@ -305,7 +305,7 @@ $( function( $ ) {
                     number : "Number only please"
                 },
                 computer_name : {
-                    required: "Computer name is required"
+                    required: "Device name is required"
                 },
                 complaint_type : {
                     required : "Complaint type is required"

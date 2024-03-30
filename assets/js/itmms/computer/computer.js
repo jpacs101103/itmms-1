@@ -49,13 +49,13 @@ $( function( $ ) {
                     $('#set_hide').removeClass('hidden');
 
                     if(result.access_rights == 'add')
-                        toastr.success( "Added!", "itmms | Computer" );
+                        toastr.success( "Added!", "itmms | Device" );
                     else
-                        toastr.success( "Added! <a role='button' class='btn btn-sm-toastr' href='manage/computers'><i class='fa fa-external-link'></i> View List</a>", "itmms | Computer" );
+                        toastr.success( "Added! <a role='button' class='btn btn-sm-toastr' href='manage/devices'><i class='fa fa-external-link'></i> View List</a>", "itmms | Device" );
 
                 }
                 else{
-                    toastr.error( "Failed to add", "itmms | Computer" );
+                    toastr.error( "Failed to add", "itmms | Device" );
                 }
 
                 $form.trigger("reset");
@@ -88,7 +88,7 @@ $( function( $ ) {
             },
             messages : {
                 computer_type : {
-                    required : "Computer type is required"
+                    required : "Device type is required"
                 },
                 brand_clone_name : {
                     required : "Brand / Clone name is required"

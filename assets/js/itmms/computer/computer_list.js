@@ -100,12 +100,12 @@ $( function( $ ) {
             success : function( result ) {
                 if(result.status){
                     obj.computer_list.ajax.reload();
-                    toastr.success('Sucessfully updated!', "itmms | Computer");
+                    toastr.success('Sucessfully updated!', "itmms | Device");
 
                     $modal.modal( 'hide' );
                 }
                 else{
-                    toastr.error( "Nothing to update", "itmms | Computer" );
+                    toastr.error( "Nothing to update", "itmms | Device" );
                 }
 
                 $submit.text( 'Update' ).prop( 'disabled', false );
@@ -238,7 +238,7 @@ $( function( $ ) {
             },
             messages : {
                 computer_type : {
-                    required : "Computer type is required"
+                    required : "Device type is required"
                 },
                 brand_clone_name : {
                     required : "Brand / Clone name is required"

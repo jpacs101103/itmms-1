@@ -1,12 +1,12 @@
 <div class="modal-content">
     <div class="modal-header">
         <button type="button" class="pull-right btn btn-default btn-danger btn-circle" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-edit"></i>&nbsp;Edit Computer</h4>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-edit"></i>&nbsp;Edit Device</h4>
     </div>
     <form method="post">
         <div class="modal-body form-horizontal">
             <div class="subtext" >
-                Computer Details
+                Device Details
             </div>
             <div class="form-group">
                 <div class="col-sm-12 itmms-label">Assigned Name: <i class="fa fa-lock fg-gray pull-right padding-right5"></i></div>
@@ -16,10 +16,10 @@
             </div>
             <div class="form-group">
                 <input type="hidden" name="computer_id" id="computer_id" />
-                <div class="col-sm-12 itmms-label">Computer Type: </div>
+                <div class="col-sm-12 itmms-label">Device Type: </div>
                 <div class="col-lg-12">
                     <select class="form-control" name="computer_type" id="computer_type">
-                        <option value="">Select Computer Type</option>
+                        <option value="">Select Device Type</option>
                         <option value="branded">Branded</option>
                         <option value="cloned">Cloned</option>
                     </select>
