@@ -141,6 +141,23 @@
                         <div class="col-lg-12">
                             <select class="form-control" id="complaint_details" name="complaint_details">
                                 <option disabled selected>Select Complaint Details</option>
+                                <optgroup label="Access Point:">
+                                    <option>No Power</option>
+                                    <option>Solid Light on LAN Port</option>
+                                    <option>Hang-up</option>
+                                </optgroup>
+                                <optgroup label="Camera:">
+                                    <option>No Display</option>
+                                    <option>No Power</option>
+                                    <option>Can’t Detect</option>
+                                    <option>Can’t Connect to NVR</option>
+                                </optgroup>
+                                <optgroup label="Network Video Recorder:">
+                                    <option>No Display</option>
+                                    <option>No Power</option>
+                                    <option>Can’t Record</option>
+                                    <option>Hang-up</option>
+                                </optgroup>
                                 <optgroup label="Personal Computer:">
                                     <option>No Power</option>
                                     <option>No Network</option>
@@ -168,17 +185,22 @@
                                     <option>Can’t Print</option>
                                     <option>Blinking</option>
                                 </optgroup>
-                                <optgroup label="TV:">
-                                    <option>No Display</option>
-                                    <option>No Power</option>
-                                    <option>Can’t Duplicate/Extend Display</option>
-                                </optgroup>
-                                <optgroup label="Router/Switch/Access Point:">
+                                <optgroup label="Router:">
                                     <option>No Power</option>
                                     <option>Solid Light on LAN Port</option>
                                     <option>Hang-up</option>
                                 </optgroup>
-                                <optgroup label="UPS:">
+                                <optgroup label="Smart TV:">
+                                    <option>No Display</option>
+                                    <option>No Power</option>
+                                    <option>Can’t Duplicate/Extend Display</option>
+                                </optgroup>
+                                <optgroup label="Switch:">
+                                    <option>No Power</option>
+                                    <option>Solid Light on LAN Port</option>
+                                    <option>Hang-up</option>
+                                </optgroup>
+                                <optgroup label="Uninterruptible Power Supply:">
                                     <option>No Power</option>
                                     <option>Beeping</option>
                                     <option>Can’t Charge Battery</option>
