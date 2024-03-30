@@ -1,6 +1,6 @@
 $( function( $ ) {
     var obj = {};
-    
+
     init();
     validate();
     ajax_get_clusters();
@@ -87,7 +87,7 @@ $( function( $ ) {
                     required : "Email Address is required"
                 },*/
                 cluster_id : {
-                    required : "Cluster is required"
+                    required : "Department/Office name is required"
                 },
                 contact_no : {
                     required : "Contact number is required"

@@ -82,7 +82,7 @@ $( function( $ ) {
                     required : "Lastname is required"
                 },
                 cluster_id : {
-                    required : "Cluster is required"
+                    required : "Department/Office name is required"
                 },
                 contact_no : {
                     required : "Contact number is required"

@@ -493,7 +493,7 @@
                     required : "Employee ID is required"
                 },
                 cluster_id : {
-                    required : "Cluster is required"
+                    required : "Department/Office name is required"
                 },
                 position : {
                     required : "Position is required"

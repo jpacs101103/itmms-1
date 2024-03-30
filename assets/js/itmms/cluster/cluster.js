@@ -22,12 +22,12 @@ $( function( $ ) {
                     $( '.cluster-wrapper-department' ).load( 'dashboard .cluster-wrapper-department > li' );
                     $( '.cluster-wrapper-office' ).load( 'dashboard .cluster-wrapper-office > li' );
                     if(result.access_rights == 'add')
-                        toastr.success( "Added!", "itmms | Cluster" );
+                        toastr.success( "Added!", "itmms | Department/Office" );
                     else
-                        toastr.success( "Added! <a role='button' class='btn btn-sm-toastr' href='manage/clusters'><i class='fa fa-external-link'></i> View List</a>", "itmms | Cluster" );
+                        toastr.success( "Added! <a role='button' class='btn btn-sm-toastr' href='manage/clusters'><i class='fa fa-external-link'></i> View List</a>", "itmms | Department/Office" );
                 }
                 else{
-                    toastr.error( "Failed to add", "itmms | Cluster" );
+                    toastr.error( "Failed to add", "itmms | Department/Office" );
                 }
 
                 $form.trigger("reset");
@@ -68,18 +68,18 @@ $( function( $ ) {
             },
             messages : {
                 room_no : {
-                    required : "Room Number is required",
-                    remote : "Room No. is not available"
+                    required : "Building name is required",
+                    remote : "Building name is not available"
                 },
                 cluster_code : {
-                    required : "Cluster code is required",
-                    remote: "Cluster Code is not available"
+                    required : "Department/Office code is required",
+                    remote: "Department/Office code is not available"
                 },
                 cluster_name : {
-                    required : "Cluster Name is required"
+                    required : "Department/Office name is required"
                 },
                 type : {
-                    required : "Cluster Type is required"
+                    required : "Type is required"
                 }
             },
             highlight: function( element, errorClass, validClass ){
