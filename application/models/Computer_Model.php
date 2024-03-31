@@ -83,6 +83,26 @@ class Computer_Model extends MY_Model{
         return $this->db->trans_complete();
     }
 
+    public function add_computer_part($data) {
+        $this->db->trans_strict(FALSE);
+        $this->db->trans_start();
+
+        $query = $this->db->get_where('computer_parts', $data);
+
+        $inserted_id = NULL;
+        if($query->num_rows() >= 1) {
+            $existing_part = $query->row(); // NOTE: We'll only get 1, we're assuming there will only be one return
+            $this->db->update('computer_parts', $data)->where('id', $existing_part->id);
+        } else {
+            $this->db->insert('computer_parts', $data);
+            $inserted_id = $this->db->insert_id();
+        }
+
+        $this->db->trans_complete();
+
+        return $inserted_id;
+    }
+
     public function add_computer_resource($data) {
         extract($data);
 
@@ -132,6 +152,15 @@ class Computer_Model extends MY_Model{
                  ->update('computer_resources', $data );
 
         return ( $this->db->affected_rows() ) ? TRUE : FALSE;
+    }
+
+    public function update_warranty_computer_parts($data) {
+        $this->db->trans_strict(FALSE);
+        $this->db->trans_start();
+
+        $this->db->update_batch('computer_parts', $data, 'id');
+
+        return $this->db->trans_complete();
     }
 
     public function delete_computer_by_id( $data ) {
@@ -195,6 +224,28 @@ class Computer_Model extends MY_Model{
                           ->get();
 
         return ( $query->num_rows() ) ? $query->row() : FALSE;
+    }
+
+    public function get_computer_parts_by_name($computer_name) {
+        $query = $this->db->select('c.computer_id, c.computer_name, cp.id, cp.parts_name, cp.parts_type, cp.depreciation_value, cp.date_created ')
+                          ->from('computers c')
+                          ->join('computer_parts cp', 'cp.computer_id = c.computer_id', 'right')
+                          ->where('c.computer_name', $computer_name)
+                          ->get();
+
+        return $query->result();
+    }
+
+    public function get_replaced_parts($computer_name) {
+        $query = $this->db->select('so.computer_name, soc.part_id, soc.status, soc.unit_status, cp.parts_name, cp.date_created')
+                          ->from('service_order so')
+                          ->join('service_order_completion soc', 'soc.ref_no = so.ref_no', 'left')
+                          ->join('computer_parts cp', 'cp.id = soc.part_id', 'left')
+                          ->where('so.computer_name', $computer_name)
+                          ->where_in('soc.unit_status', ['under warranty', 'close'])
+                          ->get();
+
+        return $query->result();
     }
 
     public function get_computer_resource_details_by_id($resource_id) {

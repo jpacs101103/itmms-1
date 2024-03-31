@@ -1,59 +1,31 @@
-<?php if (! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Ajax_service_order extends Ajax_Controller {
+class Ajax_service_order extends Ajax_Controller
+{
 
-    public function __construct() {
+    public function __construct()
+    {
 
         # Load Models
         $this->models = array('service_order', 'user', 'cluster', 'classroom', 'computer');
 
         parent::__construct();
 
-        if(!$this->input->is_ajax_request()) {
-            redirect( '403' );
+        if (!$this->input->is_ajax_request()) {
+            redirect('403');
         }
     }
 
     ########################## CRUD ##########################
 
-    public function add_service_order( $user_name ) {
+    public function add_service_order($user_name)
+    {
         $data = array();
-        if(($ajax_data = $this->input->post()) && $this->input->is_ajax_request()) {
-            if($this->service_order->add_service_order( $ajax_data, $user_name )) {
-                $data[ 'status' ] = true;
-                $data[ 'access_rights' ] = $this->session->userdata('access_rights');
-            }
-            else {
-                $data[ 'status' ] = false;
-            }
-        }
-
-        echo json_encode($data);
-    }
-
-    public function show_service_order() {
-        $data = array();
-        if(($ajax_data = $this->input->get()) && $this->input->is_ajax_request()) {
-            if($this->service_order->show_service_order($ajax_data)) {
-                $data[ 'status' ] = true;
-                echo $this->db->last_query();die;
-                $this->data['query'] = $this->service_order->show_service_order($status);
-            }
-            else {
-                $data[ 'status' ] = false;
-            }
-        }
-
-        echo json_encode($data);
-    }
-
-    public function update_service_order( $user_name ) {
-        $data = array();
-        if(($ajax_data = $this->input->post()) && $this->input->is_ajax_request()) {
-            if($this->service_order->update_service_order( $ajax_data, $user_name )) {
+        if (($ajax_data = $this->input->post()) && $this->input->is_ajax_request()) {
+            if ($this->service_order->add_service_order($ajax_data, $user_name)) {
                 $data['status'] = true;
-            }
-            else {
+                $data['access_rights'] = $this->session->userdata('access_rights');
+            } else {
                 $data['status'] = false;
             }
         }
@@ -61,20 +33,81 @@ class Ajax_service_order extends Ajax_Controller {
         echo json_encode($data);
     }
 
-    public function update_service_order_completion( $user_name ) {
+    public function show_service_order()
+    {
         $data = array();
-        if(($ajax_data = $this->input->post()) && $this->input->is_ajax_request()) {
-            extract($ajax_data);
-            if($unit_status === "need replacement" || $unit_status === 'under warranty'){
-                $status = 'pending';
+        if (($ajax_data = $this->input->get()) && $this->input->is_ajax_request()) {
+            if ($this->service_order->show_service_order($ajax_data)) {
+                $data['status'] = true;
+                echo $this->db->last_query();
+                die;
+                $this->data['query'] = $this->service_order->show_service_order($status);
+            } else {
+                $data['status'] = false;
             }
-            else {
+        }
+
+        echo json_encode($data);
+    }
+
+    public function update_service_order($user_name)
+    {
+        $data = array();
+        if (($ajax_data = $this->input->post()) && $this->input->is_ajax_request()) {
+            if ($this->service_order->update_service_order($ajax_data, $user_name)) {
+                $data['status'] = true;
+            } else {
+                $data['status'] = false;
+            }
+        }
+
+        echo json_encode($data);
+    }
+
+    public function update_service_order_completion($user_name)
+    {
+        $data = array();
+        if (($ajax_data = $this->input->post()) && $this->input->is_ajax_request()) {
+            extract($ajax_data);
+
+            $replaced_part_id = NULL;
+            if ($unit_status === "need replacement" || $unit_status === 'under warranty') {
+                $status = 'pending';
+
+                $computer_parts = $this->computer->get_computer_parts_by_name($computer_name);
+                if($computer_parts) {
+                    if(isset($computer_part)) {
+                        foreach ($computer_parts as $cp) {
+                            if($cp->parts_type == 'Computer Set') {
+                                $replaced_part_id = $this->computer->add_computer_part([
+                                    'computer_id' => $cp->computer_id,
+                                    'parts_name' => $computer_part,
+                                    'parts_type' => $computer_part,
+                                    'depreciation_value' => $cp->depreciation_value,
+                                ]);
+
+                                break;
+                            }
+                        }
+                    } else {
+                        $parts = [];
+                        foreach ($computer_parts as $cp) {
+                            $parts[] = [
+                                'id' => $cp->id,
+                                'date_created' => date("Y-m-d H:i:s")
+                            ];
+                        }
+
+                        $this->computer->update_warranty_computer_parts($parts);
+                    }
+                }
+            } else {
                 $status = 'close';
             }
-            if($this->service_order->update_service_order_completion( $ajax_data, $status, $user_name )) {
+
+            if ($this->service_order->update_service_order_completion($ajax_data, $status, $user_name, $replaced_part_id)) {
                 $data['status'] = true;
-            }
-            else {
+            } else {
                 $data['status'] = false;
             }
         }
@@ -82,13 +115,13 @@ class Ajax_service_order extends Ajax_Controller {
         echo json_encode($data);
     }
 
-    public function designate_to( $user_name ) {
+    public function designate_to($user_name)
+    {
         $data = array();
-        if(($ajax_data = $this->input->post()) && $this->input->is_ajax_request()) {
-            if($this->service_order->designate_to( $ajax_data, $user_name )) {
+        if (($ajax_data = $this->input->post()) && $this->input->is_ajax_request()) {
+            if ($this->service_order->designate_to($ajax_data, $user_name)) {
                 $data['status'] = true;
-            }
-            else {
+            } else {
                 $data['status'] = false;
             }
         }
@@ -96,13 +129,13 @@ class Ajax_service_order extends Ajax_Controller {
         echo json_encode($data);
     }
 
-    public function mark_void_service_order_by_id() {
+    public function mark_void_service_order_by_id()
+    {
         $data = array();
-        if(($ajax_data = $this->input->post()) && $this->input->is_ajax_request()) {
-            if($this->service_order->mark_void_service_order_by_id( $ajax_data )) {
+        if (($ajax_data = $this->input->post()) && $this->input->is_ajax_request()) {
+            if ($this->service_order->mark_void_service_order_by_id($ajax_data)) {
                 $data['status'] = true;
-            }
-            else {
+            } else {
                 $data['status'] = false;
             }
         }
@@ -110,14 +143,14 @@ class Ajax_service_order extends Ajax_Controller {
         echo json_encode($data);
     }
 
-    public function mark_replaced_service_order_by_id() {
+    public function mark_replaced_service_order_by_id()
+    {
         $data = array();
 
-        if(($ajax_data = $this->input->post()) && $this->input->is_ajax_request()) {
-            if($this->service_order->mark_replaced_service_order_by_id( $ajax_data )) {
+        if (($ajax_data = $this->input->post()) && $this->input->is_ajax_request()) {
+            if ($this->service_order->mark_replaced_service_order_by_id($ajax_data)) {
                 $data['status'] = true;
-            }
-            else {
+            } else {
                 $data['status'] = false;
             }
         }
@@ -125,14 +158,14 @@ class Ajax_service_order extends Ajax_Controller {
         echo json_encode($data);
     }
 
-    public function mark_for_ordering_service_order_by_id() {
+    public function mark_for_ordering_service_order_by_id()
+    {
         $data = array();
 
-        if(($ajax_data = $this->input->post()) && $this->input->is_ajax_request()) {
-            if($this->service_order->mark_for_ordering_service_order_by_id( $ajax_data )) {
+        if (($ajax_data = $this->input->post()) && $this->input->is_ajax_request()) {
+            if ($this->service_order->mark_for_ordering_service_order_by_id($ajax_data)) {
                 $data['status'] = true;
-            }
-            else {
+            } else {
                 $data['status'] = false;
             }
         }
@@ -140,13 +173,13 @@ class Ajax_service_order extends Ajax_Controller {
         echo json_encode($data);
     }
 
-    public function mark_open_service_order_by_id() {
+    public function mark_open_service_order_by_id()
+    {
         $data = array();
-        if(($ajax_data = $this->input->post()) && $this->input->is_ajax_request()) {
-            if($this->service_order->mark_open_service_order_by_id( $ajax_data )) {
+        if (($ajax_data = $this->input->post()) && $this->input->is_ajax_request()) {
+            if ($this->service_order->mark_open_service_order_by_id($ajax_data)) {
                 $data['status'] = true;
-            }
-            else {
+            } else {
                 $data['status'] = false;
             }
         }
@@ -154,16 +187,14 @@ class Ajax_service_order extends Ajax_Controller {
         echo json_encode($data);
     }
 
-    public function delete_service_order_by_id() {
+    public function delete_service_order_by_id()
+    {
         $data = array();
 
-        if(($ajax_data = $this->input->post()) && $this->input->is_ajax_request())
-        {
-            if($this->service_order->delete_service_order_by_id($ajax_data))
-            {
+        if (($ajax_data = $this->input->post()) && $this->input->is_ajax_request()) {
+            if ($this->service_order->delete_service_order_by_id($ajax_data)) {
                 $data['status'] = true;
-            }
-            else{
+            } else {
                 $data['status'] = false;
             }
         }
@@ -172,20 +203,22 @@ class Ajax_service_order extends Ajax_Controller {
     }
 
     ######################### Service Order service_order function #########################
-    public function get_report_graph() {
+    public function get_report_graph()
+    {
         $data = array();
 
-        if( ($ajax_data = $this->input->get()) && $this->input->is_ajax_request() ) {
+        if (($ajax_data = $this->input->get()) && $this->input->is_ajax_request()) {
             $offset = $this->service_order->get_total_report_records_total();
             $data = $this->service_order->get_report_graph($offset);
         }
         echo json_encode($data);
     }
 
-    public function get_report_hardware_software() {
+    public function get_report_hardware_software()
+    {
         $data = array();
 
-        if( ($ajax_data = $this->input->get()) && $this->input->is_ajax_request() ) {
+        if (($ajax_data = $this->input->get()) && $this->input->is_ajax_request()) {
             $offset = $this->service_order->get_total_report_records_total();
             $data = $this->service_order->get_report_hardware_software($offset);
         }
@@ -193,52 +226,57 @@ class Ajax_service_order extends Ajax_Controller {
         echo json_encode($data);
     }
 
-    public function get_report_counts_classroom($year) {
+    public function get_report_counts_classroom($year)
+    {
         $data = array();
 
-        if( ($ajax_data = $this->input->get()) && $this->input->is_ajax_request() ) {
+        if (($ajax_data = $this->input->get()) && $this->input->is_ajax_request()) {
             $data = $this->service_order->get_report_counts_classroom($year);
         }
 
         echo json_encode($data);
     }
 
-    public function get_report_counts_cluster($year) {
+    public function get_report_counts_cluster($year)
+    {
         $data = array();
 
-        if( ($ajax_data = $this->input->get()) && $this->input->is_ajax_request($year) ) {
+        if (($ajax_data = $this->input->get()) && $this->input->is_ajax_request($year)) {
             $data = $this->service_order->get_report_counts_cluster($year);
         }
 
         echo json_encode($data);
     }
 
-    public function get_complaint_details($complaint_type) {
+    public function get_complaint_details($complaint_type)
+    {
         $data = array();
 
-        if($this->input->is_ajax_request()) {
+        if ($this->input->is_ajax_request()) {
             $data = $this->service_order->get_complaint_details($complaint_type);
         }
 
         echo json_encode($data);
     }
 
-    public function get_service_order_timeline() {
+    public function get_service_order_timeline()
+    {
         $data = array();
-        if( ($ajax_data = $this->input->get()) || $this->input->is_ajax_request() ) {
+        if (($ajax_data = $this->input->get()) || $this->input->is_ajax_request()) {
             extract($ajax_data);
-            $data = $this->service_order->show_recently_encoded_data( $length );
+            $data = $this->service_order->show_recently_encoded_data($length);
         }
 
         echo json_encode($data);
     }
 
-    public function get_service_order_details_by_id() {
+    public function get_service_order_details_by_id()
+    {
         $data = array();
 
-        if( ($ajax_data = $this->input->get()) && $this->input->is_ajax_request() ) {
+        if (($ajax_data = $this->input->get()) && $this->input->is_ajax_request()) {
             extract($ajax_data);
-            $data = $this->service_order->get_service_order_details_by_id( $ref_no );
+            $data = $this->service_order->get_service_order_details_by_id($ref_no);
         }
 
         echo json_encode($data);
@@ -266,48 +304,48 @@ class Ajax_service_order extends Ajax_Controller {
 
     }*/
 
-    public function get_report_details_for_table($room_no) {
+    public function get_report_details_for_table($room_no)
+    {
         $data = array();
-        if( ($ajax_data = $this->input->get()) && $this->input->is_ajax_request() ) {
+        if (($ajax_data = $this->input->get()) && $this->input->is_ajax_request()) {
             extract($ajax_data);
 
-             $data = [
+            $data = [
                 'draw' => $draw,
                 'recordsTotal' => $this->service_order->get_report_details_records_total($ajax_data, $room_no),
                 'recordsFiltered' => $this->service_order->get_report_details_records_filtered($ajax_data, $room_no)
             ];
 
             $data['data'] = $this->service_order->get_report_details($ajax_data, $room_no);
-
         }
 
         $this->view = FALSE;
         echo json_encode($data);
     }
 
-    public function get_resource_type_report_details_for_table($resource_id) {
+    public function get_resource_type_report_details_for_table($resource_id)
+    {
         $data = array();
-        if( ($ajax_data = $this->input->get()) && $this->input->is_ajax_request() ) {
+        if (($ajax_data = $this->input->get()) && $this->input->is_ajax_request()) {
             extract($ajax_data);
 
-             $data = [
+            $data = [
                 'draw' => $draw,
                 'recordsTotal' => $this->service_order->get_resource_type_report_details_records_total($ajax_data, $resource_id),
                 'recordsFiltered' => $this->service_order->get_resource_type_report_details_records_filtered($ajax_data, $resource_id)
             ];
 
             $data['data'] = $this->service_order->get_resource_type_report_details($ajax_data, $resource_id);
-
         }
 
         $this->view = FALSE;
         echo json_encode($data);
-
     }
 
-    public function get_service_order_done_for_table() {
+    public function get_service_order_done_for_table()
+    {
         $data = [];
-        if(($ajax_data = $this->input->get()) && $this->input->is_ajax_request()) {
+        if (($ajax_data = $this->input->get()) && $this->input->is_ajax_request()) {
             extract($ajax_data);
             $total_records = $this->service_order->get_service_orders_done_records_total($type);
             $data = [
@@ -324,9 +362,10 @@ class Ajax_service_order extends Ajax_Controller {
         echo json_encode($data);
     }
 
-    public function get_hardware_reports() {
+    public function get_hardware_reports()
+    {
         $data = [];
-        if(($ajax_data = $this->input->get()) && $this->input->is_ajax_request()) {
+        if (($ajax_data = $this->input->get()) && $this->input->is_ajax_request()) {
             extract($ajax_data);
             $data = [
                 'draw' => $draw,
@@ -341,9 +380,10 @@ class Ajax_service_order extends Ajax_Controller {
         echo json_encode($data);
     }
 
-    public function get_software_reports() {
+    public function get_software_reports()
+    {
         $data = [];
-        if(($ajax_data = $this->input->get()) && $this->input->is_ajax_request()) {
+        if (($ajax_data = $this->input->get()) && $this->input->is_ajax_request()) {
             extract($ajax_data);
             $data = [
                 'draw' => $draw,
@@ -357,5 +397,4 @@ class Ajax_service_order extends Ajax_Controller {
         $this->view = FALSE;
         echo json_encode($data);
     }
-
 }
