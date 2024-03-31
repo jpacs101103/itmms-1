@@ -508,6 +508,11 @@ $( function( $ ) {
                                         $field.find('#designate').remove();
                                     }
                                     break;
+                                case 'unit_status':
+                                    const description = getUnitStatusDescription(value);
+                                    console.log('description',description)
+                                    $field.find('#unit_status').text(description);
+                                    break;
                                 default :
                                     $field.find( '[id=' + index + ']' ).text(value);
 
