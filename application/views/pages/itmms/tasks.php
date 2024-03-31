@@ -48,7 +48,7 @@
         </div>
     </div>
     <!-- Print Form -->
-    <div class="width100 section-to-print hidden" id="service-order-form" style="font-size: 16px">
+    <div class="width100 section-to-print hidden" id="service-order-form" style="font-size: 15px">
         <br>
 
         <table border="0">
@@ -146,7 +146,7 @@
             </tr>
             <tr>
                 <td colspan="3"></td>
-                <td style="border-left: 1px solid #000;"><span>&nbsp;&nbsp;User Sign Off:</span></td>
+                <td style="border-left: 1px solid #000;"><span>&nbsp;&nbsp;User Sign-off:</span></td>
             </tr>
             <tr>
                 <td colspan="3"></td>
@@ -154,15 +154,12 @@
             </tr>
             <tr>
                 <td colspan="3">&nbsp;</td>
-                <td style="border-left: 1px solid #000;">&nbsp;&nbsp;Received by:</td>
+                <td style="border-left: 1px solid #000;">&nbsp;&nbsp;For Turn Over:</td>
             </tr>
+
             <tr>
                 <td colspan="3"></td>
-                <td class="text-center" style="border-left: 1px solid #000; "><span class="underline-top">&nbsp;&nbsp;Property Clerk / Date</span></td>
-            </tr>
-            <tr>
-                <td colspan="3"></td>
-                <td class="text-center" style="border-left: 1px solid #000;"><span>&nbsp;&nbsp;Signature over Printed Name</span></td>
+                <td class="text-center" style="border-left: 1px solid #000; "><span class="underline-top">&nbsp;&nbsp;TSG Head Signature</span></td>
             </tr>
             <tr>
                 <td colspan="3"></td>
@@ -173,6 +170,16 @@
                 <td class="text-center" style="border-left: 1px solid #000;">
                 <div>Larmie S. Feliscuzo</div>
                 <span class="underline-top">&nbsp;&nbsp;MIS Director Signature</span></td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <td style="border-left: 1px solid #000;"><span>&nbsp;</span></td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <td class="text-center" style="border-left: 1px solid #000;">
+                    <span class="underline-top">&nbsp;&nbsp;Property Clerk Signature</span>
+                </td>
             </tr>
             <tr>
                 <td class="underline-top" colspan="4"></td>
@@ -274,7 +281,7 @@
             </tr>
             <tr>
                 <td colspan="3"></td>
-                <td style="border-left: 1px solid #000;"><span>&nbsp;&nbsp;User Sign Off:</span></td>
+                <td style="border-left: 1px solid #000;"><span>&nbsp;&nbsp;User Sign-off:</span></td>
             </tr>
             <tr>
                 <td colspan="3"></td>
@@ -282,19 +289,16 @@
             </tr>
             <tr>
                 <td colspan="3">&nbsp;</td>
-                <td style="border-left: 1px solid #000;">&nbsp;&nbsp;Received by:</td>
+                <td style="border-left: 1px solid #000;">&nbsp;&nbsp;For Turn Over:</td>
+            </tr>
+
+            <tr>
+                <td colspan="3"></td>
+                <td class="text-center" style="border-left: 1px solid #000; "><span class="underline-top">&nbsp;&nbsp;TSG Head Signature</span></td>
             </tr>
             <tr>
                 <td colspan="3"></td>
-                <td class="text-center" style="border-left: 1px solid #000; "><span class="underline-top">&nbsp;&nbsp;Property Clerk / Date</span></td>
-            </tr>
-            <tr>
-                <td colspan="3"></td>
-                <td class="text-center" style="border-left: 1px solid #000;"><span>&nbsp;&nbsp;Signature over Printed Name</span></td>
-            </tr>
-            <tr>
-                <td colspan="3"></td>
-                <td style="border-left: 1px solid #000;"><span>&nbsp;</td>
+                <td style="border-left: 1px solid #000;"><span>&nbsp;</span></td>
             </tr>
             <tr>
                 <td colspan="3"></td>
@@ -303,8 +307,17 @@
                 <span class="underline-top">&nbsp;&nbsp;MIS Director Signature</span></td>
             </tr>
             <tr>
+                <td colspan="3"></td>
+                <td style="border-left: 1px solid #000;"><span>&nbsp;</span></td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <td class="text-center" style="border-left: 1px solid #000;">
+                    <span class="underline-top">&nbsp;&nbsp;Property Clerk Signature</span>
+                </td>
+            </tr>
+            <tr>
                 <td class="underline-top" colspan="4"></td>
             </tr>
         </table>
-
 </div>
