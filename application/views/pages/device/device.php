@@ -79,9 +79,9 @@
                                             <option value="Processor">Processor</option>
                                             <option value="RAM">RAM</option>
                                             <option value="Video Card">Video Card</option>
-                                            <option value="Video Card">Printer</option>
-                                            <option value="Video Card">TV</option>
-                                            <option value="Video Card">UPS</option>
+                                            <option value="Printer">Printer</option>
+                                            <option value="TV">TV</option>
+                                            <option value="UPS">UPS</option>
                                         </select>
                                     </div>
 

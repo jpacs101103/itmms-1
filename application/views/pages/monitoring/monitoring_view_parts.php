@@ -6,10 +6,17 @@
             </h1>
         </div>
     </div>
-    <hr/>
+    <hr />
+
+    <?php if (isset($replaced_parts)) : ?>
+        <div id="monitoring-chart-tooltip">
+            <div class="part-name"></div>
+            <div class="date-added"></div>
+        </div>
+    <?php endif; ?>
 
     <?php foreach ($query as $row) : ?>
-        <div class="row part-row">
+        <div class="row part-row hidden">
             <div class="col-lg-12">
                 <div class="panel panel-info">
                     <input type="hidden" class="depreciation-value" value="<?= $row->depreciation_value ?>" />
@@ -17,10 +24,31 @@
 
                     <div class="panel-heading">
                         <b><?= $row->parts_name; ?></b>
-                        <span class="label label-success">Health: <span class="value"></span></span>
+                        <span class="label label-success health">Health: <span class="value"></span></span>
+
+                        <?php if (isset($replaced_part)) : ?>
+                            <?php
+                            $replaced_part = NULL;
+                            foreach ($replaced_parts as $rp) {
+                                if ($rp->part_id == $row->id) {
+                                    $replaced_part = $rp;
+                                    break;
+                                }
+                            };
+                            ?>
+
+                            <span class="label label-info replacement">Replacement: <?= (new DateTime($replaced_part->date_created))->format('F j, Y g:iA')  ?></span>
+                        <?php endif ?>
                     </div>
+
+                    <?php
+                    $has_replacement = $row->parts_name == 'Computer Set' && $replaced_parts;
+                    $class = $has_replacement ? 'computer-set-chart' : '';
+                    $data = $has_replacement ? json_encode($replaced_parts) : '';
+                    ?>
+
                     <div class="panel-body">
-                        <canvas class="line-chart" height="70"></canvas>
+                        <canvas data-replaced-parts='<?= $data ?>' class="line-chart <?= $class ?>" height="<?= $row->parts_name == 'Computer Set' ? 100 : 70 ?>"></canvas>
                     </div>
                 </div>
             </div>

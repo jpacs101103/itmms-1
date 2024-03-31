@@ -1765,3 +1765,28 @@ table#cluster-report tbody tr:last-child td {
 .monitoring-health {
   font-size: 1.25rem;
 }
+
+/* Monitoring Page */
+#monitoring-chart-tooltip {
+  position: absolute;
+  display: none;
+  background: black;
+  color: white;
+  border-radius: 8px;
+  padding: 6px;
+  pointer-events: none;
+  z-index: 1000;
+  font-size: 1.25rem;
+}
+
+#monitoring-chart-tooltip .part-name {
+  font-weight: bold;
+}
+
+#monitoring-chart-tooltip .date-added {
+  font-size: 1rem;
+}
+
+#monitoring-chart-tooltip .part-name {
+
+}

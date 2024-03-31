@@ -428,6 +428,7 @@ $( function( $ ) {
             dataType : 'json',
             data : { ref_no : obj.ref_no },
             success: function( result ){
+
                 $.each( result, function(index, value){
                     switch( obj.method ){
                         case 'service_done' :
@@ -456,6 +457,9 @@ $( function( $ ) {
                                     break;
                                 case 'date_reported':
                                     $field.find( '[id=' + index + ']' ).text($.format.date(value + '00:00:00', "MMMM dd, yyyy"));
+                                    break;
+                                case 'complaint':
+                                    $form.find( '[name=' + index + ']' ).val(value);
                                     break;
                                 default :
                                     $form.find( '[name=' + index + ']' ).val(value);
@@ -642,6 +646,12 @@ $( function( $ ) {
                 },
                 property_date_received : {
                     required : true
+                },
+                computer_part : {
+                    required : function() {
+                        return $form.find("input#complaint").val() == 'Personal Computer' &&
+                                $form.find("#unit_status").val() == 'under warranty';
+                    }
                 }
             },
             messages : {
@@ -668,6 +678,9 @@ $( function( $ ) {
                 },
                 property_date_received : {
                     required : "Property Date Received is required"
+                },
+                computer_part: {
+                    required : "Computer Part is required"
                 }
 
             },
@@ -850,12 +863,17 @@ $( function( $ ) {
                                         $('#property').hide();
                                         $('#returned_to').val('');
                                         $('#property_date_received').val('');
+                                        $('.computer-parts-field').addClass('hidden');
                                     }
                                     else if( $(this).val() === 'need replacement' || $(this).val() === 'under warranty' ){
                                         $('#property_date').hide();
                                         $('#property').show();
                                         $('#return').hide();
                                         $('#returned_to').val('');
+
+                                        if($('input#complaint').val() == 'Personal Computer') {
+                                            $('.computer-parts-field').removeClass('hidden');
+                                        }
                                     }
                                 });
                                 validate( $medium_modal.find( 'form' ), $medium_modal );
@@ -959,7 +977,6 @@ $( function( $ ) {
                     });
                 } );
                 break;
-                break;
             default :
                 obj.ajax_get_modal_content( ajax_url, $modal ).done( function(){
                     $modal.modal( {
@@ -970,5 +987,4 @@ $( function( $ ) {
                 break;
         }
     }
-
 } );

@@ -122,25 +122,27 @@ class Service_Order_Model extends MY_Model{
         return $this->db->trans_complete();
     }
 
-    public function update_service_order_completion( $data, $status, $user_name ) {
+    public function update_service_order_completion( $data, $status, $user_name, $replaced_part_id = NULL ) {
         $this->db->trans_strict(FALSE);
         $this->db->trans_start();
 
         extract($data);
 
         $data = array(
-                'date_finished'         =>  date('Y-m-d', strtotime($date_finished)),
-                'time_finished'         =>  $time_finished,
-                'date_replaced'         =>  ( $date_replaced ? date('Y-m-d', strtotime($date_replaced)) : NULL ),
-                'time_replaced'         =>  ( $time_replaced ? $time_replaced : NULL ),
-                'action_taken'          =>  $action_taken,
-                'completed_by'          =>  $completed_by,
-                'unit_status'           =>  $unit_status,
-/*                'returned_to'           =>  ( $returned_to ? ucwords(strtolower($returned_to)) : NULL ),
-                'property_clerk'        =>  ( $property_clerk ? ucwords(strtolower($property_clerk)) : NULL ),
- */               // 'property_date_received'=>  ( $property_date_received ? date('Y-m-d', strtotime($property_date_received)) : NULL ),
-                'status'                =>  $status
-            );
+            'date_finished' => date('Y-m-d', strtotime($date_finished)),
+            'time_finished' => $time_finished,
+            'date_replaced' => ( $date_replaced ? date('Y-m-d', strtotime($date_replaced)) : NULL ),
+            'time_replaced' => ( $time_replaced ? $time_replaced : NULL ),
+            'action_taken'  => $action_taken,
+            'completed_by'  => $completed_by,
+            'unit_status'   => $unit_status,
+            'status'        => $status,
+            'part_id'       => $replaced_part_id
+            // 'returned_to'           =>  ( $returned_to ? ucwords(strtolower($returned_to)) : NULL ),
+            // 'property_clerk'        =>  ( $property_clerk ? ucwords(strtolower($property_clerk)) : NULL ),
+            // 'property_date_received'=>  ( $property_date_received ? date('Y-m-d', strtotime($property_date_received)) : NULL ),
+
+        );
 
         $this->db->where( 'ref_no', $ref_no )
                  ->update( 'service_order_completion', $data );
@@ -894,7 +896,7 @@ class Service_Order_Model extends MY_Model{
         $params[] = 'close';
         $params[] = date('Y-m-d', strtotime($date_from));
         $params[] = date('Y-m-d', strtotime($date_to));
-        
+
         if($type !== 'all'){
             $params[] = $type;
         }
