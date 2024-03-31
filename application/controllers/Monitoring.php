@@ -54,11 +54,8 @@ class monitoring extends MY_Controller {
         }
 
         $this
-            // Scripts
             ->add_local_scripts('assets/js/moment/moment')
-            // TODO: Download these scripts and store locally
-            ->add_local_scripts('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min')
-            ->add_local_scripts('https://cdn.jsdelivr.net/npm/chartjs-adapter-moment')
+            ->add_local_scripts('assets/js/chartjs/chart.umd.min')
             ->add_local_scripts('assets/js/chartjs/chartjs-adapter-moment')
             ->add_local_scripts('assets/js/itmms/monitoring/monitoring-view-parts');
     }
