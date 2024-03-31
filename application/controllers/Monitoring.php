@@ -45,25 +45,18 @@ class monitoring extends MY_Controller {
         $this->data['query'] = $this->computer->get_computer_parts($computer_id);
         $this->data['computer'] = $this->computer->get_computer_details_by_id($computer_id);
 
-
-
-        $has_computer_set = false;
         $computer_parts = $this->data['query'];
         foreach ($computer_parts as $cp) {
             if($cp->parts_name == 'Computer Set') {
-                $has_computer_set = true;
+                $this->data['replaced_parts'] = $this->computer->get_replaced_parts($this->data['computer']->computer_name);
                 break;
             }
         }
 
-        if($has_computer_set) {
-            $this->data['replaced_parts'] = $this->computer->get_replaced_parts($this->data['computer']->computer_name);
-        }
-
         $this
             // Scripts
-            // ->add_local_scripts('assets/js/jquery/jquery')
             ->add_local_scripts('assets/js/moment/moment')
+            // TODO: Download these scripts and store locally
             ->add_local_scripts('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min')
             ->add_local_scripts('https://cdn.jsdelivr.net/npm/chartjs-adapter-moment')
             ->add_local_scripts('assets/js/chartjs/chartjs-adapter-moment')

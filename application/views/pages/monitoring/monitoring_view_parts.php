@@ -26,7 +26,7 @@
                         <b><?= $row->parts_name; ?></b>
                         <span class="label label-success health">Health: <span class="value"></span></span>
 
-                        <?php if (isset($replaced_part)) : ?>
+                        <?php if (isset($replaced_parts)) : ?>
                             <?php
                             $replaced_part = NULL;
                             foreach ($replaced_parts as $rp) {
@@ -37,7 +37,9 @@
                             };
                             ?>
 
-                            <span class="label label-info replacement">Replacement: <?= (new DateTime($replaced_part->date_created))->format('F j, Y g:iA')  ?></span>
+                            <?php if ($replaced_part != NULL) : ?>
+                                <span class="label label-info replacement">Replacement: <?= (new DateTime($replaced_part->date_created))->format('F j, Y g:iA')  ?></span>
+                            <?php endif ?>
                         <?php endif ?>
                     </div>
 
