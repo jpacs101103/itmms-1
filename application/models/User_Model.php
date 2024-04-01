@@ -227,18 +227,18 @@ class User_Model extends MY_Model{
 
         return ( $this->db->affected_rows() ) ? TRUE : FALSE;
     }
-    
+
     public function demote_user_by_id( $data ){
         extract($data);
-        
+
         $data = array(
                 'user_type' => 'administrator',
                 'access_rights' => 'full_control'
             );
-        
+
         $this->db->where( 'id', $id )
                 ->update('users', $data );
-        
+
         return ( $this->db->affected_rows() ) ? TRUE : FALSE;
     }
 
@@ -603,8 +603,8 @@ class User_Model extends MY_Model{
             else
                 $sql .= 'AND soc.status = ? ';
         }
-        
-        
+
+
 
         if(!empty($search['value'])){
             $sql .= 'AND (so.ref_no = ? ';
@@ -645,7 +645,7 @@ class User_Model extends MY_Model{
 
         $params = [];
 
-        $sql = 'SELECT so.ref_no, so.cluster_id, so.computer_name, so.complaint_resource_id, cr.type complaint_type, cr.resource_name complaint, so.complaint_details, CONCAT_WS(\' \', soa.date_reported, soa.time_reported) datetime_reported, ';
+        $sql = 'SELECT so.ref_no, so.cluster_id, so.computer_name, so.complaint_resource_id, cr.type complaint_type, cr.resource_name complaint, so.complaint_details, soc.part_name, CONCAT_WS(\' \', soa.date_reported, soa.time_reported) datetime_reported, ';
         $sql .= 'CONCAT_WS(\' \', at.firstname, at.lastname) assigned_to ';
         $sql .= 'FROM service_order so ';
         $sql .= 'LEFT JOIN service_order_acceptance soa ON so.ref_no = soa.ref_no ';
@@ -740,7 +740,7 @@ class User_Model extends MY_Model{
 
             $params[] = $cluster_id;
         }
-        
+
         $sql .= 'AND (soc.status = ? ';
         $sql .= 'OR soc.status = ? ';
         $sql .= 'OR soc.status = ? ';
@@ -760,7 +760,7 @@ class User_Model extends MY_Model{
             $sql .= 'OR CONCAT_WS(\' \', soa.date_reported, soa.time_reported) LIKE ? ';
             $sql .= 'OR soa.time_reported LIKE ?) ';
         }
-        
+
         if(!empty($search['value'])){
             $params[] = $search['value'];
             $params[] = '%' . $search['value'] . '%';
@@ -770,7 +770,7 @@ class User_Model extends MY_Model{
             $params[] = '%' . $search['value'] . '%';
             $params[] = '%' . $search['value'] . '%';
         }
-        
+
 
         $query = $this->db->query($sql, $params);
 
@@ -792,7 +792,7 @@ class User_Model extends MY_Model{
 
             $params[] = $cluster_id;
         }
-        
+
         $sql .= 'AND (soc.status = ? ';
         $sql .= 'OR soc.status = ? ';
         $sql .= 'OR soc.status = ? ';
@@ -802,7 +802,7 @@ class User_Model extends MY_Model{
         $params[] = 'pending';
         $params[] = 'close';
         $params[] = 'void';
-        
+
 
         if(!empty($search['value'])){
             $sql .= 'AND (so.ref_no = ? ';
@@ -814,7 +814,7 @@ class User_Model extends MY_Model{
             $sql .= 'OR soa.time_reported LIKE ?) ';
         }
 
-        
+
         if(isset($order)){
                 $sql .= 'ORDER BY is_urgent DESC, ' . $columns[$order[0]['column']]['data'] . ' ' . strtoupper($order[0]['dir']) . ' ';
          }

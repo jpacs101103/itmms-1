@@ -108,12 +108,12 @@ $( function( $ ) {
                 if(result.status){
                     obj.cluster_list.ajax.reload();
                     $( '.cluster-wrapper' ).load( 'dashboard .cluster-wrapper > li' );
-                    toastr.success('Sucessfully updated!', "itmms | Cluster");
+                    toastr.success('Sucessfully updated!', "itmms | Department/Office");
 
                     $modal.modal( 'hide' );
                 }
                 else {
-                    toastr.error( "Nothing to update", "itmms | Cluster");
+                    toastr.error( "Nothing to update", "itmms | Department/Office");
                 }
 
                 $submit.text( 'Update' ).prop( 'disabled', false );
@@ -134,12 +134,12 @@ $( function( $ ) {
                 if( result.status ) {
                     obj.cluster_list.ajax.reload();
                     $( '.cluster-wrapper' ).load( 'dashboard .cluster-wrapper > li' );
-                    toastr.success( 'Removed!', "itmms | Cluster");
+                    toastr.success( 'Removed!', "itmms | Department/Office");
 
                     $small_modal.modal( 'hide' );
                 }
                 else {
-                    toastr.error( 'Unable to delete', "itmms | Cluster");
+                    toastr.error( 'Unable to delete', "itmms | Department/Office");
                 }
             },
             error : function( xhr, status ) {
@@ -219,11 +219,11 @@ $( function( $ ) {
                     required : "Room No. is required"
                 },
                 cluster_code : {
-                    required : "Cluster Code is required",
-                    remote : "Cluster Code is not available"
+                    required : "Department/Office Code is required",
+                    remote : "Department/Office Code is not available"
                 },
                 cluster_name : {
-                    required : "Cluster Name is required"
+                    required : "Department/Office Name is required"
                 },
                type : {
                     required : "Room Type is required"

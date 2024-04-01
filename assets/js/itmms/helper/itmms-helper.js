@@ -244,7 +244,11 @@ function ajax_get_clusters() {
         success: function (result) {
             if (result instanceof Array) {
                 var $select = $("<option />");
-                $select.attr("value", "").text("Select Department / Office");
+                $select.attr({
+                    "value": "",
+                    "disabled": "",
+                    "selected": "",
+                }).text("Select Department/Office");
 
                 $cluster_id.empty();
                 $cluster_id.append($select);

@@ -17,7 +17,7 @@
                                 <th class="text-center" data-priority="1">ID</th>
                                 <th data-priority="3">Assigned Name</th>
                                 <th>Device Type</th>
-                                <th>Brand/Clone Name</th>
+                                <th>Device Name</th>
                                 <th>Designation</th>
                                 <th>Assigned To</th>
                                 <!-- <th>Date Assigned</th> -->

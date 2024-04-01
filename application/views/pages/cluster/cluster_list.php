@@ -7,7 +7,7 @@
     </div>
 </div>
 <div class="toogle">
-        <span><b><small>Cluster Type: </small></b></span>
+        <span><b><small>Department/Office Type: </small></b></span>
         <span class="btn-group" role="group">
             <button type="button" class="btn btn-default active" data-role="type">All</button>
             <button type="button" class="btn btn-default" data-role="type">Department</button>
@@ -24,9 +24,9 @@
                             <tr>
                                 <th class="text-center" data-priority="1">ID</th>
                                 <th>Room No.</th>
-                                <th data-priority="3">Cluster Code</th>
-                                <th>Cluster Name</th>
-                                <th>Cluster Type</th>
+                                <th data-priority="3">Department/Office Code</th>
+                                <th>Department/Office Name</th>
+                                <th>Department/Office Type</th>
                                 <th># of Rooms</th>
                                 <th class="text-center" data-priority="2"><i class="fa fa-wrench fa-fw"></i></th>
                             </tr>

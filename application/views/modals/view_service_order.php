@@ -27,7 +27,7 @@
                             Employee Name: <span id="emp_name"></span>
                         </div>
                         <div>
-                            Originator Cluster: <span id="cluster_name"></span>
+                            Originator Department/Office: <span id="cluster_name"></span>
                         </div>
                         <div>
                             Position: <span id="position"></span>

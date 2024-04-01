@@ -56,7 +56,7 @@ $( function( $ ) {
             },
             messages : {
                 cluster_id : {
-                    required : "Department / Office is required"
+                    required : "Department/Office is required"
                 },
                 room_no : {
                     required : "Room No. is required",

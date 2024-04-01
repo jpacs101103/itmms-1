@@ -46,7 +46,7 @@
                     <td>
                         <div class="form-group">
                             <div class="col-sm-2 itmms-label">First Name:</div>
-                            
+
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Input First Name">
                             </div>
@@ -61,7 +61,7 @@
                 <tr>
                     <td>
                         <div class="form-group">
-                            <span class="col-sm-12 itmms-label">Cluster:</span>
+                            <span class="col-sm-12 itmms-label">Department/Office:</span>
                             <div class="col-lg-12">
                                 <select name="cluster_id" id="cluster_id" class="form-control"></select>
                             </div>

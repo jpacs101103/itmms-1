@@ -26,9 +26,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-12 itmms-label">Brand/Clone Name:</div>
+                <div class="col-sm-12 itmms-label">Device Name:</div>
                 <div class="col-lg-12">
-                    <textarea class="form-control" rows="5" id="brand_clone_name" name="brand_clone_name" placeholder="Input Brand/Clone Name"></textarea>
+                    <textarea class="form-control" rows="5" id="brand_clone_name" name="brand_clone_name" placeholder="Input Device Name"></textarea>
             </div>
             </div>
             <div class="subtext">

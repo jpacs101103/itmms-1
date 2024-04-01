@@ -17,7 +17,7 @@
 			<tr>
 				<td>
 					<div class="form-group">
-						<span class="col-sm-12 itmms-label">Department / Office:</span>
+						<span class="col-sm-12 itmms-label">Department/Office:</span>
 						<div class="col-lg-12">
 							<select class="form-control" name="cluster_id" id="cluster_id"></select>
 						</div>

@@ -5,7 +5,7 @@
     </div>
     <form method="post">
         <div class="modal-body form-horizontal padding20">
-            <div class="subtext" >
+            <div class="subtext">
                 Part I - Originator Details
             </div>
             <div class="form-group">
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <span class="col-sm-12 itmms-label">Cluster:</span>
+                <span class="col-sm-12 itmms-label">Department/Office:</span>
                 <div class="col-lg-12">
                     <select class="form-control" name="cluster_id" id="cluster_id"></select>
                 </div>
@@ -31,13 +31,13 @@
                     <input type="text" class="form-control" name="position" id="position" placeholder="Input Employee Position">
                 </div>
             </div>
-           <div class="form-group">
+            <div class="form-group">
                 <span class="col-sm-12 itmms-label">Contact No.:</span>
                 <div class="col-lg-12">
                     <input type="number" min="0" class="form-control no-arrow" name="contact_no" id="contact_no" placeholder="Input Contact No.">
                 </div>
             </div>
-            <div class="subtext" >
+            <div class="subtext">
                 Part II - Complaint Details
             </div>
             <div class="form-group">
@@ -64,9 +64,9 @@
                 <span class="col-sm-12 itmms-label">Complaint Type:</span>
                 <div class="col-lg-12">
                     <select class="form-control" name="complaint_type" id="complaint_type">
-                            <option value="">Select Complaint Type</option>
-                            <option value="hardware">Hardware</option>
-                            <option value="software">Software</option>
+                        <option value="">Select Complaint Type</option>
+                        <option value="hardware">Hardware</option>
+                        <option value="software">Software</option>
                     </select>
                 </div>
 
@@ -90,11 +90,7 @@
                 <div class="col-lg-8">
                     <div class="inner-addon right-addon">
                         <i class="fa fa-calendar"></i>
-                        <input type='text'
-                               class="datepicker-here form-control"
-                               id="date"
-                               name="date_reported"
-                               readonly="readonly" />
+                        <input type='text' class="datepicker-here form-control" id="date" name="date_reported" readonly="readonly" />
                     </div>
                 </div>
                 <div class="col-lg-12 itmms-label-hidden-lg hidden-lg">Time Reported:</div>
@@ -102,28 +98,40 @@
                     <div class="bootstrap-timepicker">
                         <div class="inner-addon right-addon">
                             <i class="fa fa-clock-o"></i>
-                            <input id="time_reported"
-                                   type="text"
-                                   name="time_reported"
-                                   class="form-control"
-                                   />
+                            <input id="time_reported" type="text" name="time_reported" class="form-control" />
                         </div>
                     </div>
                 </div>
             </div>
- <!--            <div class="form-group">
-                <span class="col-sm-12 itmms-label">Received By:</span>
-                <div class="col-lg-12">
-                    <select class="form-control" name="received_by" id="received_ae" ></select>
-                </div>
-            </div> -->
+
             <div class="form-group">
                 <span class="col-lg-12 itmms-label">Assigned to:</span>
                 <div class="col-lg-12">
                     <select class="form-control" name="assigned_to" id="user_id"></select>
                 </div>
             </div>
-            <input type="hidden" name="ref_no" id="ref_no"/>
+
+            <div class="replacement-section hidden">
+                <div class="subtext">
+                    Part III - Replacement Details
+                </div>
+
+                <div class="form-group">
+                    <span class="col-sm-12 itmms-label">EPR No.:</span>
+                    <div class="col-lg-12">
+                        <input type="text" class="form-control" name="epr_no" id="epr_no" placeholder="Input EPR No.">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-12 itmms-label">Diagnose / Troubleshooting Report:</div>
+                    <div class="col-sm-12">
+                        <textarea class="form-control" rows="5" name="action_taken" placeholder="Type here ..." id="action_taken"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" name="ref_no" id="ref_no" />
         </div>
         <div class="modal-footer modal-custom-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
