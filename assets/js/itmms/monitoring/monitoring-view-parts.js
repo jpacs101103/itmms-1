@@ -149,6 +149,8 @@ $(function ($) {
                                         "MMMM D, YYYY"
                                     )
                                 );
+
+                            break;
                         } else {
                             tooltipElem.style.display = "none";
                         }
