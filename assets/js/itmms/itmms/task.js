@@ -23,13 +23,22 @@ $( function( $ ) {
             computer_name = $( this ).data( 'computer-name' ),
             cluster_id = $( this ).data( 'cluster-id' ),
             complaint_type = $( this ).data( 'complaint-type' ),
+            part_name = $( this ).data( 'part-name' ),
             method = $( this ).data( 'method' );
 
         if(method == 'print') {
             obj.print_service_order_form(ref_no);
         }
         else {
-            load_modal( url, ref_no, computer_name, cluster_id, complaint_type, method );
+            load_modal({
+                url,
+                ref_no,
+                computer_name,
+                cluster_id,
+                complaint_type,
+                part_name,
+                method,
+              });
         }
     } );
 
@@ -43,9 +52,6 @@ $( function( $ ) {
                 break;
             case 're_open' :
                 obj.ajax_mark_open_service_order_by_id( $small_modal );
-                break;
-            case 'replaced' :
-                obj.ajax_mark_replaced_service_order_by_id( $small_modal );
                 break;
         }
     } );
@@ -68,11 +74,7 @@ $( function( $ ) {
             { 'data': 'computer_name' },
             { 'data': 'complaint_type', 'sClass': 'caps' },
             { 'data': 'complaint' },
-            {
-                'data': 'complaint_details',
-                'width': '30%'
-            },
-           /* { 'data': 'received_by' },*/
+            { 'data': 'complaint_details', 'width': '30%' },
             { 'data': 'assigned_to' },
             { 'data': 'datetime_reported' },
             { 'data': 'actions' },
@@ -122,7 +124,7 @@ $( function( $ ) {
                                                 <a href="javascript:void(0)" data-method="print" data-bind="print_service_order_form" data-id="' + row.ref_no + '" id="print_service_order_form"><i class="fa fa-print fa-fw"></i> Print Form</a> \
                                             </li> \
                                             <li> \
-                                                <a href="javascript:void(0)" data-method="replaced" data-bind="confirmation" data-id="' + row.ref_no + '"><i class="fa fa-check-square-o fa-fw fg-green"></i> Resolve</a> \
+                                                <a href="javascript:void(0)" data-method="replaced" data-bind="resolve_service_order" data-id="' + row.ref_no + '" data-computer-name="' + row.computer_name + '" data-part-name="' + row.part_name + '"><i class="fa fa-check-square-o fa-fw fg-green"></i> Resolve</a> \
                                             </li>';
                                     }
                                    /* else if(obj.status === 'replaced') {
@@ -209,15 +211,22 @@ $( function( $ ) {
         });
     };
 
-    obj.ajax_mark_replaced_service_order_by_id = function( $small_modal ){
+    obj.ajax_mark_replaced_service_order_by_id = function( $form, $medium_modal ){
         var $submit = $('[type="submit"]');
 
         $.ajax({
             url : 'ajax_service_order/mark_replaced_service_order_by_id',
             type : 'post',
             dataType : 'json',
-            data : { ref_no : obj.ref_no, user_name : obj.user_name },
-            beforeSend : function(){
+            data : {
+                ref_no: obj.ref_no,
+                user_name: obj.user_name,
+                computer_name: obj.computer_name,
+                part_name: obj.part_name,
+                epr_no: $form.find('#epr_no').val(),
+                action_taken: $form.find('#action_taken').val()
+              },
+            beforeSend : function() {
                 $submit.text( 'Processing...' ).prop( 'disabled', true );
             },
             success : function( result ){
@@ -226,7 +235,7 @@ $( function( $ ) {
                     obj.user_task_list.ajax.reload();
                     toastr.success( 'Marked as Resolved!', "itmms | Service Order" );
 
-                    $small_modal.modal( 'hide' );
+                    $medium_modal.modal( 'hide' );
                 }
                 else
                 {
@@ -380,7 +389,7 @@ $( function( $ ) {
     }
 
     function ajax_get_service_order_details_by_ref_no( ref_no ) {
-        var $div = $( '#service-order-form' );
+        var form = $( '#service-order-form' );
 
         return $.ajax({
             url : 'ajax_service_order/get_service_order_details_by_id',
@@ -388,27 +397,25 @@ $( function( $ ) {
             dataType : 'json',
             data : { ref_no : ref_no },
             success: function( result ) {
+                console.log(result);
                 $.each( result, function(index, value) {
                     switch( index ) {
                         case 'if_pulled_out' :
                                 if(value == 1) {
-                                    $div.find( '[id="if_pulled_out_yes"]' ).attr('checked', 'checked');
-                                }
-                                else if(value == 0) {
-                                    $div.find( '[id="if_pulled_out_no"]' ).attr('checked', 'checked');
-                                }
-                            break;
-                        case 'if_pulled_out_again' :
-                                if(value == 1){
-                                    $div.find( '[id="if_pulled_out_yes"]' ).attr('checked', 'checked');
-                                }
-                                else if(value == 0){
-                                    $div.find( '[id="if_pulled_out_no"]' ).attr('checked', 'checked');
+                                    form.find( '.pulled-out-yes' ).attr('checked', 'checked');
+                                } else {
+                                    form.find( '.pulled-out-no' ).attr('checked', 'checked');
                                 }
                             break;
-
+                        case 'under_warranty' :
+                                if(value == 1) {
+                                    form.find( '.pulled-out-yes' ).attr('checked', 'checked');
+                                } else {
+                                    form.find( '.pulled-out-no' ).attr('checked', 'checked');
+                                }
+                            break;
                         default :
-                            $div.find( '[id=' + index + ']' ).text(value);
+                            form.find( '[id=' + index + ']' ).text(value);
                             break;
                     }
                 } );
@@ -428,7 +435,6 @@ $( function( $ ) {
             dataType : 'json',
             data : { ref_no : obj.ref_no },
             success: function( result ){
-
                 $.each( result, function(index, value){
                     switch( obj.method ){
                         case 'service_done' :
@@ -510,7 +516,6 @@ $( function( $ ) {
                                     break;
                                 case 'unit_status':
                                     const description = getUnitStatusDescription(value);
-                                    console.log('description',description)
                                     $field.find('#unit_status').text(description);
                                     break;
                                 default :
@@ -526,6 +531,16 @@ $( function( $ ) {
                                     break;
                             }
                             break;
+                        case 'replaced' :
+                                switch( index ) {
+                                    case 'epr_no' :
+                                        $form.find( '[id=' + index + ']' ).val(value);
+                                        break;
+                                    case 'action_taken' :
+                                        $form.find( '[id=' + index + ']' ).val(value);
+                                        break;
+                                }
+                                break;
                     }
                 } );
             },
@@ -570,6 +585,19 @@ $( function( $ ) {
                 },
                 time_reported : {
                     required : true
+                },
+                assigned_to: {
+                    required : true
+                },
+                epr_no: {
+                    required: function() {
+                        return obj.status == 'pending';
+                    }
+                },
+                action_taken: {
+                    required: function() {
+                        return obj.status == 'pending';
+                    }
                 }
             },
             messages : {
@@ -606,6 +634,15 @@ $( function( $ ) {
                 },
                 time_reported : {
                     required : "Time reported is required"
+                },
+                assigned_to: {
+                    required : "Assigned To is required"
+                },
+                epr_no: {
+                    required : "EPR No. is required"
+                },
+                action_taken: {
+                    required : "Action Taken is required"
                 }
             },
             highlight: function( element, errorClass, validClass ) {
@@ -657,7 +694,10 @@ $( function( $ ) {
                         return $form.find("input#complaint").val() == 'Personal Computer' &&
                                 $form.find("#unit_status").val() == 'under warranty';
                     }
-                }
+                },
+                assigned_to: {
+                    required : true
+                },
             },
             messages : {
                 date_finished : {
@@ -686,8 +726,10 @@ $( function( $ ) {
                 },
                 computer_part: {
                     required : "Computer Part is required"
+                },
+                assigned_to: {
+                    required : "Assigned To is required"
                 }
-
             },
             highlight: function( element, errorClass, validClass ){
                 $(element).addClass( errorClass ).removeClass( validClass );
@@ -702,6 +744,41 @@ $( function( $ ) {
             submitHandler: function(){
                 $form.find( '[name="ref_no"]' ).val(obj.ref_no);
                 obj.ajax_update_service_order_completion( $form, $modal );
+            }
+        });
+    }
+
+    function validate_resolve( $form, $modal ) {
+        $form.validate({
+            ignore: ":hidden:not(#ref_no)",
+            rules: {
+                epr_no : {
+                    required : true
+                },
+                action_taken : {
+                    required : true
+                },
+            },
+            messages : {
+                epr_no : {
+                    required : "EPR No. is required"
+                },
+                action_taken : {
+                    required : "Action Taken is required"
+                },
+            },
+            highlight: function( element, errorClass, validClass ){
+                $(element).addClass( errorClass ).removeClass( validClass );
+            },
+            unhighlight: function( element, errorClass, validClass ){
+                $(element).removeClass( errorClass );
+            },
+            errorPlacement: function( erorr, element ){
+                erorr.insertAfter(element);
+            },
+            submitHandler: function(){
+                $form.find( '[name="ref_no"]' ).val(obj.ref_no);
+                obj.ajax_mark_replaced_service_order_by_id( $form, $modal );
             }
         });
     }
@@ -800,7 +877,7 @@ $( function( $ ) {
         });
     }
 
-    function load_modal( url, ref_no, computer_name, cluster_id, complaint_type, method ) {
+    function load_modal( {url, ref_no, computer_name, cluster_id, complaint_type, part_name, method} ) {
         var $modal = $( '#large' ),
             $medium_modal = $( '#medium' ),
             $small_modal = $( '#small' ),
@@ -811,6 +888,7 @@ $( function( $ ) {
             obj.cluster_id = cluster_id;
             obj.complaint_type = complaint_type;
             obj.computer_name = computer_name;
+            obj.part_name = part_name;
 
         switch( obj.method ){
             case 'service_done':
@@ -929,6 +1007,11 @@ $( function( $ ) {
                                     get_all_user_details_of_admin().done( function() {
                                         ajax_get_service_order_details_by_id( $medium_modal ).done( function() {
                                             validate_service_order_on_update(  $medium_modal.find( 'form' ), $medium_modal);
+
+                                            if(obj.status == 'pending') {
+                                                $('.replacement-section').removeClass('hidden');
+                                            }
+
                                             $( document ).on( 'change', '#cluster_id', function(){
                                                 var value = $(this).val();
                                                 if(value) {
@@ -975,11 +1058,14 @@ $( function( $ ) {
                 } );
                 break;
             case 'replaced' :
-                obj.ajax_get_modal_content( ajax_url, $small_modal ).done( function(){
-                    $small_modal.modal( {
-                        show : true,
-                        backdrop: 'static',
-                    });
+                obj.ajax_get_modal_content( ajax_url, $medium_modal ).done( function(){
+                    ajax_get_service_order_details_by_id($medium_modal).done(function () {
+                        $medium_modal.modal({
+                          show: true,
+                          backdrop: "static",
+                        });
+                        validate_resolve($medium_modal.find("form"), $medium_modal);
+                      });
                 } );
                 break;
             default :

@@ -87,6 +87,14 @@ class Service_Order_Model extends MY_Model{
 
         extract($data);
 
+        if(isset($epr_no) && isset($action_taken)) {
+            $this->db->where( 'ref_no', $ref_no )
+            ->update( 'service_order_completion', [
+                'epr_no' => $epr_no,
+                'action_taken' => $action_taken
+            ]);
+        }
+
         $service_order = array(
                 'emp_id'                =>  $emp_id,
                 'emp_name'              =>  ucwords(strtolower($emp_name)),
@@ -96,7 +104,7 @@ class Service_Order_Model extends MY_Model{
                 'computer_name'         =>  strtoupper($computer_name),
                 'if_pulled_out'         =>  $if_pulled_out,
                 'complaint_resource_id' =>  $complaint_resource_id,
-                'complaint_details'     =>  ucfirst($complaint_details)
+                'complaint_details'     =>  ucfirst($complaint_details),
             );
 
         $this->db->where( 'ref_no', $ref_no )
@@ -122,7 +130,7 @@ class Service_Order_Model extends MY_Model{
         return $this->db->trans_complete();
     }
 
-    public function update_service_order_completion( $data, $status, $user_name, $replaced_part_id = NULL ) {
+    public function update_service_order_completion( $data, $status, $user_name, $computer_part = NULL ) {
         $this->db->trans_strict(FALSE);
         $this->db->trans_start();
 
@@ -137,7 +145,7 @@ class Service_Order_Model extends MY_Model{
             'completed_by'  => $completed_by,
             'unit_status'   => $unit_status,
             'status'        => $status,
-            'part_id'       => $replaced_part_id
+            'part_name'     => $computer_part
             // 'returned_to'           =>  ( $returned_to ? ucwords(strtolower($returned_to)) : NULL ),
             // 'property_clerk'        =>  ( $property_clerk ? ucwords(strtolower($property_clerk)) : NULL ),
             // 'property_date_received'=>  ( $property_date_received ? date('Y-m-d', strtotime($property_date_received)) : NULL ),
@@ -160,6 +168,16 @@ class Service_Order_Model extends MY_Model{
             );
 
         $this->db->insert('logs', $activity_log);
+
+        return $this->db->trans_complete();
+    }
+
+    public function update_service_order_completion_part( $ref_no, $part_id ) {
+        $this->db->trans_strict(FALSE);
+        $this->db->trans_start();
+
+        $this->db->where( 'ref_no', $ref_no )
+                ->update( 'service_order_completion', ['part_id' => $part_id] );
 
         return $this->db->trans_complete();
     }
@@ -218,9 +236,10 @@ class Service_Order_Model extends MY_Model{
         extract($data);
 
         $data = array(
-                'property_date_received'    =>  date('Y-m-d'),
-                'status'                    =>  'close',
-                'unit_status'               =>  'close'
+                'property_date_received'    => date('Y-m-d'),
+                'status'                    => 'close',
+                'unit_status'               => 'close',
+                'epr_no'                    => $epr_no,
             );
 
         $this->db->where( 'ref_no', $ref_no )
@@ -388,7 +407,7 @@ class Service_Order_Model extends MY_Model{
                           ->select('soa.assigned_to, soa.designate_to appoint, soa.designate_to completed_by, soa.date_reported, soa.time_reported')
                           ->select('CONCAT_WS(\' \', cb.firstname, cb.lastname) view_completed_by, CONCAT_WS(\' \', at.firstname, at.lastname) view_assigned_to, CONCAT_WS(\' \', dt.firstname, dt.lastname) view_designate_to')
                           ->select('CONCAT_WS(\' \', soa.date_reported, soa.time_reported) datetime_reported')
-                          ->select('soc.property_clerk, soc.property_date_received, soc.action_taken, soc.unit_status, CONCAT_WS(\' \', soc.date_finished, soc.time_finished) datetime_finished, soc.date_finished, soc.time_finished ')
+                          ->select('soc.property_clerk, soc.property_date_received, soc.action_taken, soc.unit_status, soc.epr_no, CONCAT_WS(\' \', soc.date_finished, soc.time_finished) datetime_finished, soc.date_finished, soc.time_finished ')
                           ->from('service_order so')
                           ->join('service_order_acceptance soa', 'soa.ref_no = so.ref_no', 'inner')
                           ->join('service_order_completion soc', 'soc.ref_no = so.ref_no', 'inner')

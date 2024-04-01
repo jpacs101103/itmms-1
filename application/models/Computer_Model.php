@@ -92,7 +92,7 @@ class Computer_Model extends MY_Model{
         $inserted_id = NULL;
         if($query->num_rows() >= 1) {
             $existing_part = $query->row(); // NOTE: We'll only get 1, we're assuming there will only be one return
-            $this->db->update('computer_parts', $data)->where('id', $existing_part->id);
+            $this->db->where('id', $existing_part->id)->update('computer_parts', $data);
         } else {
             $this->db->insert('computer_parts', $data);
             $inserted_id = $this->db->insert_id();

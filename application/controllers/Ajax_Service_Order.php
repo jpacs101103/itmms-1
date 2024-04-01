@@ -70,42 +70,9 @@ class Ajax_service_order extends Ajax_Controller
         if (($ajax_data = $this->input->post()) && $this->input->is_ajax_request()) {
             extract($ajax_data);
 
-            $replaced_part_id = NULL;
-            if ($unit_status === "need replacement" || $unit_status === 'under warranty') {
-                $status = 'pending';
+            $status = ($unit_status === "need replacement" || $unit_status === 'under warranty') ? 'pending' : 'close';
 
-                $computer_parts = $this->computer->get_computer_parts_by_name($computer_name);
-                if($computer_parts) {
-                    if(isset($computer_part)) {
-                        foreach ($computer_parts as $cp) {
-                            if($cp->parts_type == 'Computer Set') {
-                                $replaced_part_id = $this->computer->add_computer_part([
-                                    'computer_id' => $cp->computer_id,
-                                    'parts_name' => $computer_part,
-                                    'parts_type' => $computer_part,
-                                    'depreciation_value' => $cp->depreciation_value,
-                                ]);
-
-                                break;
-                            }
-                        }
-                    } else {
-                        $parts = [];
-                        foreach ($computer_parts as $cp) {
-                            $parts[] = [
-                                'id' => $cp->id,
-                                'date_created' => date("Y-m-d H:i:s")
-                            ];
-                        }
-
-                        $this->computer->update_warranty_computer_parts($parts);
-                    }
-                }
-            } else {
-                $status = 'close';
-            }
-
-            if ($this->service_order->update_service_order_completion($ajax_data, $status, $user_name, $replaced_part_id)) {
+            if ($this->service_order->update_service_order_completion($ajax_data, $status, $user_name)) {
                 $data['status'] = true;
             } else {
                 $data['status'] = false;
@@ -149,6 +116,39 @@ class Ajax_service_order extends Ajax_Controller
 
         if (($ajax_data = $this->input->post()) && $this->input->is_ajax_request()) {
             if ($this->service_order->mark_replaced_service_order_by_id($ajax_data)) {
+
+                extract($ajax_data);
+
+                $computer_parts = $this->computer->get_computer_parts_by_name($computer_name);
+
+                if($computer_parts) {
+                    if(isset($part_name) && $part_name) {
+                        foreach ($computer_parts as $cp) {
+                            if($cp->parts_type == 'Computer Set') {
+                                $replaced_part_id = $this->computer->add_computer_part([
+                                    'computer_id' => $cp->computer_id,
+                                    'parts_name' => $part_name,
+                                    'parts_type' => $part_name,
+                                    'depreciation_value' => $cp->depreciation_value,
+                                ]);
+
+                                $this->service_order->update_service_order_completion_part($ref_no, $replaced_part_id);
+                                break;
+                            }
+                        }
+                    } else {
+                        $parts = [];
+                        foreach ($computer_parts as $cp) {
+                            $parts[] = [
+                                'id' => $cp->id,
+                                'date_created' => date("Y-m-d H:i:s")
+                            ];
+                        }
+
+                        $this->computer->update_warranty_computer_parts($parts);
+                    }
+                }
+
                 $data['status'] = true;
             } else {
                 $data['status'] = false;
