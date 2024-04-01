@@ -39,7 +39,7 @@ $( function( $ ) {
                         return "<span class='label label-success'>Resolved</span>"
                     }
 
-                    return '';
+                    return `<span class='label label-default'>${row.unit_status}</span>` ;
                 }
             },
         ],
