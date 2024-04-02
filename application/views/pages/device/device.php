@@ -23,23 +23,23 @@
                             <div class="col-lg-12">
                                 <select class="form-control" name="computer_type" id="computer_type">
                                     <option value="">Select Device Type</option>
-                                    <option value="branded">Branded Computer</option>
-                                    <option value="cloned">Cloned Computer</option>
-                                    <option value="ap">Access Point</option>
-                                    <option value="hard drive">Hard Disk</option>
-                                    <option value="keyboard">Keyboard</option>
-                                    <option value="media converter">Media Converter</option>
-                                    <option value="memory">Memory</option>
-                                    <option value="monitor">Monitor</option>
-                                    <option value="motherboard">Motherboard</option>
-                                    <option value="mouse">Mouse</option>
-                                    <option value="power supply">Power Supply</option>
-                                    <option value="printer">Printer</option>
-                                    <option value="router">Router</option>
-                                    <option value="sfp">Small Form-factor Pluggable</option>
-                                    <option value="switch">Switch</option>
-                                    <option value="tv">TV</option>
-                                    <option value="ups">UPS</option>
+                                    <option value="Branded">Branded Computer</option>
+                                    <option value="Cloned">Cloned Computer</option>
+                                    <option value="Access Point">Access Point</option>
+                                    <option value="Hard Drive">Hard Disk</option>
+                                    <option value="Keyboard">Keyboard</option>
+                                    <option value="Media Converter">Media Converter</option>
+                                    <option value="Memory">Memory</option>
+                                    <option value="Monitor">Monitor</option>
+                                    <option value="Motherboard">Motherboard</option>
+                                    <option value="Mouse">Mouse</option>
+                                    <option value="Power Supply">Power Supply</option>
+                                    <option value="Printer">Printer</option>
+                                    <option value="Router">Router</option>
+                                    <option value="SFP">Small Form-factor Pluggable</option>
+                                    <option value="Switch">Switch</option>
+                                    <option value="TV">TV</option>
+                                    <option value="UPS">UPS</option>
                                     <option value="others">Others</option>
                                 </select>
                             </div>
@@ -71,15 +71,21 @@
                                         <span>Parts: </span>
                                         <select class="form-control" name="computer_parts[]" id="computer_parts">
                                             <option selected disabled>Select Parts</option>
-                                            <option value="Computer Set">Computer Set</option>
+                                            <option value="Branded">Branded Computer</option>
+                                            <option value="Cloned">Cloned Computer</option>
+                                            <option value="Access Point">Access Point</option>
+                                            <option value="Hard Drive">Hard Disk</option>
+                                            <option value="Keyboard">Keyboard</option>
+                                            <option value="Media Converter">Media Converter</option>
+                                            <option value="Memory">Memory</option>
                                             <option value="Monitor">Monitor</option>
-                                            <option value="Hard Drive">Hard Drive</option>
                                             <option value="Motherboard">Motherboard</option>
+                                            <option value="Mouse">Mouse</option>
                                             <option value="Power Supply">Power Supply</option>
-                                            <option value="Processor">Processor</option>
-                                            <option value="RAM">RAM</option>
-                                            <option value="Video Card">Video Card</option>
                                             <option value="Printer">Printer</option>
+                                            <option value="Router">Router</option>
+                                            <option value="SFP">Small Form-factor Pluggable</option>
+                                            <option value="Switch">Switch</option>
                                             <option value="TV">TV</option>
                                             <option value="UPS">UPS</option>
                                         </select>
